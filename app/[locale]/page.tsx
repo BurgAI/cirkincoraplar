@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CTASection } from "@/components/CTASection";
+import { BentoShowcase } from "@/components/BentoShowcase";
 import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
 
@@ -122,6 +123,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
+      <BentoShowcase />
       <Gallery dict={dict} />
 
       <CTASection
