@@ -10,7 +10,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # gdown ile public Drive klasörünü indir
 result = subprocess.run(
-    ["gdown", "--folder", "--remaining-ok", f"https://drive.google.com/drive/folders/{FOLDER_ID}", "-O", OUTPUT_DIR],
+    ["gdown", "--folder", f"https://drive.google.com/drive/folders/{FOLDER_ID}", "-O", OUTPUT_DIR],
     capture_output=True,
     text=True,
 )
