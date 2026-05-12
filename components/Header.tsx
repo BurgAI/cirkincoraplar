@@ -25,17 +25,17 @@ export function Header({ locale, dict }: HeaderProps) {
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
         <Link href={`/${locale}`} className="flex items-center gap-3">
-          <span className="relative h-10 w-10 overflow-hidden rounded-2xl border border-ink/10 bg-white">
+          <span className="relative h-14 w-14 overflow-hidden rounded-2xl border border-ink/10 bg-white">
             <Image
               src={siteConfig.logo}
               alt={`${siteConfig.name} logo`}
               fill
               className="object-cover"
-              sizes="40px"
+              sizes="56px"
             />
           </span>
           <span>
-            <span className="block text-base font-semibold leading-tight text-ink">
+            <span className="block text-lg font-semibold leading-tight text-ink">
               {siteConfig.name}
             </span>
             <span className="block text-xs text-ink/55">{dict.common.manufacturer}</span>
