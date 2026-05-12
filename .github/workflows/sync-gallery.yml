@@ -1,0 +1,41 @@
+name: Sync Gallery from Google Drive
+
+on:
+  schedule:
+    - cron: "0 6 * * *"  # Her gün saat 06:00'da çalışır
+  workflow_dispatch:       # Manuel başlatma butonu da var
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install google-api-python-client google-auth
+
+      - name: Sync photos from Google Drive
+        env:
+          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: python scripts/sync_gallery.py
+
+      - name: Commit and push new photos
+        run: |
+          git config user.email "galeri-bot@cirkincoraplar.com"
+          git config user.name "Galeri Bot"
+          git add public/images/gallery/
+          if git diff --staged --quiet; then
+            echo "Yeni fotoğraf yok."
+          else
+            git commit -m "Galeriye yeni fotoğraflar eklendi (Google Drive)"
+            git push
+          fi
