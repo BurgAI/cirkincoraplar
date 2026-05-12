@@ -249,9 +249,8 @@ export const dictionary = {
         whatsapp: "WhatsApp",
         instagram: "Instagram",
         location: "Konum",
-        locationText: "Türkiye",
-        locationNote:
-          "Atölye, üretim kapasitesi ve teslimat bilgileri gerçek verilerle güncellenecek.",
+        locationText: "Terazidere Mah. Cengiz Topel Sok. No:22, Bayrampaşa, İstanbul",
+        locationNote: "Türkiye 34440",
       },
     },
     products: [
@@ -495,9 +494,8 @@ export const dictionary = {
         whatsapp: "WhatsApp",
         instagram: "Instagram",
         location: "Location",
-        locationText: "Turkey",
-        locationNote:
-          "Workshop, production capacity, and delivery details will be updated with real information.",
+        locationText: "Terazidere Mah. Cengiz Topel Sok. No:22, Bayrampaşa, Istanbul",
+        locationNote: "Turkey 34440",
       },
     },
     products: [
@@ -741,9 +739,8 @@ export const dictionary = {
         whatsapp: "WhatsApp",
         instagram: "Instagram",
         location: "Standort",
-        locationText: "Türkei",
-        locationNote:
-          "Werkstatt, Produktionskapazität und Lieferdetails werden mit echten Daten aktualisiert.",
+        locationText: "Terazidere Mah. Cengiz Topel Sok. No:22, Bayrampaşa, Istanbul",
+        locationNote: "Türkei 34440",
       },
     },
     products: [
