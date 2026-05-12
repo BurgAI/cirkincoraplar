@@ -10,7 +10,7 @@ export const siteConfig = {
   whatsappNumber: "+90XXXXXXXXXX",
   whatsappMessage:
     "Merhaba, Çirkin Çoraplar ürünleri ve toptan üretim hakkında bilgi almak istiyorum.",
-  instagramUrl: "https://www.instagram.com/cirkin_coraplar?igsh=YmVsYjlja3l0eDBi",
+  instagramUrl: "https://www.instagram.com/cirkin_coraplar/",
   email: "info@cirkincoraplar.com",
   location: "Türkiye",
   futureKeywords: ["Milotreading", "socks manufacturer", "custom tote bags"],
