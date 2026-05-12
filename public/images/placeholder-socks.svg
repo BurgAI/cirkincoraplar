@@ -1,0 +1,14 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Çorap ürün fotoğrafı yer tutucu">
+  <rect width="1200" height="900" fill="#F7F5F0"/>
+  <rect x="92" y="94" width="1016" height="712" rx="42" fill="#FFFFFF" stroke="#DFE6E0" stroke-width="3"/>
+  <path d="M449 166h202v364c0 88-71 159-159 159h-78c-50 0-91-41-91-91v-36h120c41 0 74-33 74-74V260h-68V166Z" fill="#2F6F5E"/>
+  <path d="M663 211h160v313c0 72-59 131-131 131h-79c-39 0-71-32-71-71v-28h103c34 0 62-28 62-62V291h-44v-80Z" fill="#D44637"/>
+  <path d="M449 166h202v84H449v-84Z" fill="#D8B36A"/>
+  <path d="M663 211h160v80H663v-80Z" fill="#D8B36A"/>
+  <circle cx="443" cy="360" r="19" fill="#FFFFFF" opacity=".9"/>
+  <circle cx="443" cy="438" r="19" fill="#FFFFFF" opacity=".9"/>
+  <circle cx="443" cy="516" r="19" fill="#FFFFFF" opacity=".9"/>
+  <circle cx="720" cy="383" r="15" fill="#FFFFFF" opacity=".9"/>
+  <circle cx="720" cy="451" r="15" fill="#FFFFFF" opacity=".9"/>
+  <text x="600" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#18201F">Gerçek çorap fotoğrafı ile değiştirilecek</text>
+</svg>

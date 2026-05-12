@@ -1,0 +1,10 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Toptan ürün fotoğrafı yer tutucu">
+  <rect width="1200" height="900" fill="#EEF2EF"/>
+  <rect x="92" y="94" width="1016" height="712" rx="42" fill="#FFFFFF" stroke="#DFE6E0" stroke-width="3"/>
+  <rect x="238" y="270" width="300" height="220" rx="18" fill="#D8B36A" stroke="#18201F" stroke-width="5"/>
+  <rect x="662" y="270" width="300" height="220" rx="18" fill="#2F6F5E" stroke="#18201F" stroke-width="5"/>
+  <rect x="450" y="470" width="300" height="220" rx="18" fill="#D44637" stroke="#18201F" stroke-width="5"/>
+  <path d="M286 344h204M710 344h204M498 544h204" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round"/>
+  <path d="M286 408h148M710 408h148M498 608h148" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round"/>
+  <text x="600" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#18201F">Gerçek toptan ürün fotoğrafı ile değiştirilecek</text>
+</svg>
