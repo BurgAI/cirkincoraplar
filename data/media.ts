@@ -13,21 +13,16 @@ export const instagramMedia = {
   },
 } as const;
 
-export const instagramPreviewImages = [
-  {
-    src: instagramMedia.socks.hero,
-    alt: "Instagram'dan desenli corap urun fotografi",
-  },
-  {
-    src: instagramMedia.socks.bamboo,
-    alt: "Instagram'dan bambu corap urun fotografi",
-  },
-  {
-    src: instagramMedia.tote.custom,
-    alt: "Instagram'dan ozel baskili bez canta urun fotografi",
-  },
-  {
-    src: instagramMedia.tote.school,
-    alt: "Instagram'dan dijital baskili bez canta urun fotografi",
-  },
-] as const;
+export const galleryImages = [
+  { src: instagramMedia.socks.hero, alt: "Desenli çorap ürün fotoğrafı" },
+  { src: instagramMedia.tote.custom, alt: "Özel baskılı bez çanta" },
+  { src: instagramMedia.socks.bamboo, alt: "Bambu çorap ürün fotoğrafı" },
+  { src: instagramMedia.tote.school, alt: "Dijital baskılı bez çanta" },
+  { src: instagramMedia.socks.pilates, alt: "Pilates çorap ürün fotoğrafı" },
+  { src: instagramMedia.socks.wholesale, alt: "Toptan çorap ürün fotoğrafı" },
+];
+
+export const instagramPreviewImages = galleryImages.slice(0, 4) as {
+  src: string;
+  alt: string;
+}[];

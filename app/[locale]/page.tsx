@@ -2,13 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CTASection } from "@/components/CTASection";
+import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
-import { InstagramPreview } from "@/components/InstagramPreview";
 import { SectionTitle } from "@/components/SectionTitle";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
 import { instagramMedia } from "@/data/media";
-import { siteConfig } from "@/data/siteConfig";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -122,33 +121,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      <section className="bg-cotton py-14 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[1fr_.9fr] md:items-center md:px-6">
-          <SectionTitle
-            eyebrow={dict.home.socialEyebrow}
-            title={dict.home.socialTitle}
-            description={dict.home.socialDescription}
-          />
-          <div className="rounded-3xl bg-white p-6 shadow-soft">
-            <p className="text-lg font-semibold text-ink">@cirkin_coraplar</p>
-            <p className="mt-3 text-sm leading-6 text-ink/70">{dict.home.socialCard}</p>
-            <div className="mt-5">
-              <InstagramPreview />
-            </div>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={siteConfig.instagramUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-ink/15 px-5 py-3 text-sm font-semibold text-ink transition hover:border-thread hover:text-thread"
-              >
-                {dict.common.instagram}
-              </a>
-              <WhatsAppButton label={dict.common.whatsappShort} />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Gallery locale={activeLocale} dict={dict} />
 
       <CTASection
         label={dict.cta.label}
