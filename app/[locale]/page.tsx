@@ -4,6 +4,7 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { CTASection } from "@/components/CTASection";
 import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
+
 import { SectionTitle } from "@/components/SectionTitle";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
@@ -121,7 +122,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      <Gallery locale={activeLocale} dict={dict} />
+      <Gallery dict={dict} />
 
       <CTASection
         label={dict.cta.label}
