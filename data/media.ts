@@ -1,13 +1,15 @@
+const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const instagramMedia = {
   socks: {
-    hero: "/images/instagram/socks-hero.webp",
-    bamboo: "/images/instagram/socks-bamboo.jpg",
-    pilates: "/images/instagram/socks-pilates.webp",
-    wholesale: "/images/instagram/socks-wholesale.jpg",
+    hero: `${b}/images/instagram/socks-hero.webp`,
+    bamboo: `${b}/images/instagram/socks-bamboo.jpg`,
+    pilates: `${b}/images/instagram/socks-pilates.webp`,
+    wholesale: `${b}/images/instagram/socks-wholesale.jpg`,
   },
   tote: {
-    custom: "/images/instagram/tote-custom.webp",
-    school: "/images/instagram/tote-school.jpg",
+    custom: `${b}/images/instagram/tote-custom.webp`,
+    school: `${b}/images/instagram/tote-school.jpg`,
   },
 } as const;
 

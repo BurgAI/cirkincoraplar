@@ -1,6 +1,8 @@
+const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const siteConfig = {
   name: "Çirkin Çoraplar",
-  logo: "/images/logo-instagram.jpg",
+  logo: `${b}/images/logo-instagram.jpg`,
   exportBrand: "Milotreading",
   title: "Çirkin Çoraplar | Çorap ve Bez Çanta Üretimi",
   description:

@@ -3,6 +3,8 @@ export type LocalizedText = {
   en: string;
 };
 
+const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export type Category = {
   title: LocalizedText;
   description: LocalizedText;
@@ -20,7 +22,7 @@ export const categories: Category[] = [
       en: "Daily, colorful, patterned, and brand-ready sock options.",
     },
     href: "/socks",
-    image: "/images/placeholder-socks.svg",
+    image: `${b}/images/placeholder-socks.svg`,
     imageAlt: "Gerçek çorap ürün fotoğrafı ile değiştirilecek alan",
     note: "Gerçek çorap ürün fotoğrafı ile değiştirilecek.",
   },
@@ -31,7 +33,7 @@ export const categories: Category[] = [
       en: "Tote bags for promotions, stores, events, and brand use.",
     },
     href: "/tote-bags",
-    image: "/images/placeholder-tote.svg",
+    image: `${b}/images/placeholder-tote.svg`,
     imageAlt: "Gerçek bez çanta fotoğrafı ile değiştirilecek alan",
     note: "Gerçek bez çanta fotoğrafı ile değiştirilecek.",
   },
@@ -42,7 +44,7 @@ export const categories: Category[] = [
       en: "Production planning by logo, color, pattern, and quantity.",
     },
     href: "/custom-production",
-    image: "/images/placeholder-custom.svg",
+    image: `${b}/images/placeholder-custom.svg`,
     imageAlt: "Özel üretim numune fotoğrafı ile değiştirilecek alan",
     note: "Özel üretim numune fotoğrafı ile değiştirilecek.",
   },
@@ -53,7 +55,7 @@ export const categories: Category[] = [
       en: "Manufacturer quotes for stock products and recurring orders.",
     },
     href: "/wholesale",
-    image: "/images/placeholder-wholesale.svg",
+    image: `${b}/images/placeholder-wholesale.svg`,
     imageAlt: "Toptan ürün koli veya raf fotoğrafı ile değiştirilecek alan",
     note: "Toptan ürün koli veya raf fotoğrafı ile değiştirilecek.",
   },
