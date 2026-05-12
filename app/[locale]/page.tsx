@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CTASection } from "@/components/CTASection";
 import { Hero } from "@/components/Hero";
+import { InstagramPreview } from "@/components/InstagramPreview";
 import { SectionTitle } from "@/components/SectionTitle";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
+import { instagramMedia } from "@/data/media";
 import { siteConfig } from "@/data/siteConfig";
 
 type HomePageProps = {
@@ -28,7 +30,7 @@ export default async function HomePage({ params }: HomePageProps) {
         eyebrow={dict.common.manufacturer}
         title={dict.home.heroTitle}
         description={dict.home.heroDescription}
-        image="/images/placeholder-socks.svg"
+        image={instagramMedia.socks.hero}
         imageAlt={dict.categories[0].imageAlt}
         whatsappLabel={dict.common.whatsappCta}
         secondaryHref={`/${activeLocale}/custom-production`}
@@ -130,6 +132,9 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="rounded-3xl bg-white p-6 shadow-soft">
             <p className="text-lg font-semibold text-ink">@cirkin_coraplar</p>
             <p className="mt-3 text-sm leading-6 text-ink/70">{dict.home.socialCard}</p>
+            <div className="mt-5">
+              <InstagramPreview />
+            </div>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <a
                 href={siteConfig.instagramUrl}

@@ -1,3 +1,5 @@
+import { instagramMedia } from "@/data/media";
+
 export const pageContent = {
   socks: {
     title: "Çorap Üretimi",
@@ -5,7 +7,7 @@ export const pageContent = {
     description:
       "Stoklu ürünler, desenli koleksiyonlar ve markaya özel çorap çalışmaları için üretici firma ile doğrudan iletişime geçin.",
     bullets: ["Desenli çorap", "Logo çorap", "Toptan stok ürün", "Numune odaklı özel üretim"],
-    image: "/images/placeholder-socks.svg",
+    image: instagramMedia.socks.hero,
   },
   toteBags: {
     title: "Bez Çanta Üretimi",
@@ -13,7 +15,7 @@ export const pageContent = {
     description:
       "Mağaza, etkinlik, fuar ve kurumsal promosyon ihtiyaçları için baskıya uygun bez çanta üretimi.",
     bullets: ["Promosyon çanta", "Markalı bez çanta", "Farklı ebat seçenekleri", "Toplu sipariş"],
-    image: "/images/placeholder-tote.svg",
+    image: instagramMedia.tote.custom,
   },
   customProduction: {
     title: "Özel Üretim",
@@ -21,7 +23,7 @@ export const pageContent = {
     description:
       "Ürününüzü hedef kullanım, marka dili, adet ve teslim planına göre birlikte netleştiririz.",
     bullets: ["İhtiyaç analizi", "Logo ve desen uyarlama", "Numune değerlendirme", "Üretim planı"],
-    image: "/images/placeholder-custom.svg",
+    image: instagramMedia.socks.bamboo,
   },
   wholesale: {
     title: "Toptan Satış",
@@ -29,6 +31,6 @@ export const pageContent = {
     description:
       "Mağazalar, kurumsal müşteriler ve promosyon firmaları için çorap ve bez çanta toptan teklifleri.",
     bullets: ["Üreticiden teklif", "Stoklu ürün alternatifi", "Düzenli sipariş desteği", "WhatsApp ile hızlı dönüş"],
-    image: "/images/placeholder-wholesale.svg",
+    image: instagramMedia.socks.wholesale,
   },
 } as const;

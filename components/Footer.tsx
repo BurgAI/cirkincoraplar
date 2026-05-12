@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import type { Dictionary, Locale } from "@/data/i18n";
@@ -23,7 +24,18 @@ export function Footer({ locale, dict }: FooterProps) {
     <footer className="bg-ink py-12 text-white">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[1fr_1fr_auto] md:px-6">
         <div>
-          <h2 className="text-xl font-semibold">{siteConfig.name}</h2>
+          <div className="flex items-center gap-3">
+            <span className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/15 bg-white">
+              <Image
+                src={siteConfig.logo}
+                alt={`${siteConfig.name} logo`}
+                fill
+                className="object-cover"
+                sizes="48px"
+              />
+            </span>
+            <h2 className="text-xl font-semibold">{siteConfig.name}</h2>
+          </div>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/65">
             {dict.meta.description} {dict.home.exportNote}
           </p>

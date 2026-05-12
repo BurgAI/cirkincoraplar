@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -24,8 +25,14 @@ export function Header({ locale, dict }: HeaderProps) {
     <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
         <Link href={`/${locale}`} className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-sm font-bold text-white">
-            ÇÇ
+          <span className="relative h-10 w-10 overflow-hidden rounded-2xl border border-ink/10 bg-white">
+            <Image
+              src={siteConfig.logo}
+              alt={`${siteConfig.name} logo`}
+              fill
+              className="object-cover"
+              sizes="40px"
+            />
           </span>
           <span>
             <span className="block text-base font-semibold leading-tight text-ink">

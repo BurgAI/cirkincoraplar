@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "Çirkin Çoraplar",
+  logo: "/images/logo-instagram.jpg",
   exportBrand: "Milotreading",
   title: "Çirkin Çoraplar | Çorap ve Bez Çanta Üretimi",
   description:

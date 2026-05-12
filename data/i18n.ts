@@ -1,3 +1,5 @@
+import { instagramMedia } from "@/data/media";
+
 export const locales = ["tr", "en", "de"] as const;
 
 export type Locale = (typeof locales)[number];
@@ -50,7 +52,7 @@ export const dictionary = {
       whatsappCta: "WhatsApp ile teklif al",
       whatsappShort: "WhatsApp'tan yaz",
       instagram: "Instagram'a git",
-      photoNote: "Gerçek fotoğraf ile değiştirilecek",
+      photoNote: "Instagram urun fotografi",
       menuLabel: "Ana menü",
       footerMenuLabel: "Alt menü",
     },
@@ -89,7 +91,7 @@ export const dictionary = {
       socialDescription:
         "Mevcut satış ve müşteri iletişimi Instagram üzerinden ilerliyor. Web sitesi bu güveni üretici kimliği ve daha düzenli teklif akışıyla destekler.",
       socialCard:
-        "Gerçek Instagram gönderileri, müşteri fotoğrafları veya üretimden kısa görüntüler ileride bu alana eklenebilir.",
+        "Secilen urun gorselleri Instagram paylasimlarindan alindi ve siteye mantikli bolumlerde yerlestirildi.",
       exportNote:
         "ihracat markası için İngilizce ve Almanca içerik yapısı hazırlanmıştır.",
     },
@@ -104,7 +106,7 @@ export const dictionary = {
         title: "Çorap Üretimi",
         description: "Günlük, renkli, desenli ve markaya özel çorap seçenekleri.",
         href: "socks",
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         imageAlt: "Gerçek çorap ürün fotoğrafı ile değiştirilecek alan",
         note: "Gerçek çorap ürün fotoğrafı ile değiştirilecek.",
       },
@@ -112,7 +114,7 @@ export const dictionary = {
         title: "Bez Çanta",
         description: "Promosyon, mağaza, etkinlik ve marka kullanımı için bez çanta.",
         href: "tote-bags",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         imageAlt: "Gerçek bez çanta fotoğrafı ile değiştirilecek alan",
         note: "Gerçek bez çanta fotoğrafı ile değiştirilecek.",
       },
@@ -120,7 +122,7 @@ export const dictionary = {
         title: "Özel Üretim",
         description: "Logo, renk, desen ve adet ihtiyacına göre üretim planı.",
         href: "custom-production",
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         imageAlt: "Özel üretim numune fotoğrafı ile değiştirilecek alan",
         note: "Özel üretim numune fotoğrafı ile değiştirilecek.",
       },
@@ -128,7 +130,7 @@ export const dictionary = {
         title: "Toptan Satış",
         description: "Stoklu ürünler ve düzenli alımlar için üreticiden teklif.",
         href: "wholesale",
-        image: "/images/placeholder-wholesale.svg",
+        image: instagramMedia.socks.wholesale,
         imageAlt: "Toptan ürün koli veya raf fotoğrafı ile değiştirilecek alan",
         note: "Toptan ürün fotoğrafı ile değiştirilecek.",
       },
@@ -168,7 +170,7 @@ export const dictionary = {
         description:
           "Stoklu ürünler, desenli koleksiyonlar ve markaya özel çorap çalışmaları için üretici firma ile doğrudan iletişime geçin.",
         bullets: ["Desenli çorap", "Logo çorap", "Toptan stok ürün", "Numune odaklı özel üretim"],
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         sectionEyebrow: "Çorap seçenekleri",
         sectionTitle: "Stoklu ve özel üretime uygun modeller",
         sectionDescription:
@@ -181,7 +183,7 @@ export const dictionary = {
         description:
           "Mağaza, etkinlik, fuar ve kurumsal promosyon ihtiyaçları için baskıya uygun bez çanta üretimi.",
         bullets: ["Promosyon çanta", "Markalı bez çanta", "Farklı ebat seçenekleri", "Toplu sipariş"],
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         sectionEyebrow: "Bez çanta seçenekleri",
         sectionTitle: "Promosyon ve marka kullanımı için üretim",
         sectionDescription:
@@ -194,7 +196,7 @@ export const dictionary = {
         description:
           "Ürününüzü hedef kullanım, marka dili, adet ve teslim planına göre birlikte netleştiririz.",
         bullets: ["İhtiyaç analizi", "Logo ve desen uyarlama", "Numune değerlendirme", "Üretim planı"],
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         sectionEyebrow: "Süreç",
         sectionTitle: "Özel üretimde sade ve net ilerleme",
         sectionDescription:
@@ -213,7 +215,7 @@ export const dictionary = {
         description:
           "Mağazalar, kurumsal müşteriler ve promosyon firmaları için çorap ve bez çanta toptan teklifleri.",
         bullets: ["Üreticiden teklif", "Stoklu ürün alternatifi", "Düzenli sipariş desteği", "WhatsApp ile hızlı dönüş"],
-        image: "/images/placeholder-wholesale.svg",
+        image: instagramMedia.socks.wholesale,
         sectionEyebrow: "Toptan çalışma",
         sectionTitle: "Instagram dışındaki profesyonel teklif akışı",
         sectionDescription:
@@ -257,28 +259,28 @@ export const dictionary = {
         name: "Desenli Çorap",
         category: "socks",
         description: "Renkli koleksiyonlar, stoklu modeller ve marka uyarlamaları.",
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         specs: ["Stok veya özel desen", "Farklı beden seçenekleri", "Toptan sipariş"],
       },
       {
         name: "Logo Çorap",
         category: "socks",
         description: "Kurumsal hediye, etkinlik ve marka projeleri için logo uygulama.",
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         specs: ["Logo uyarlama", "Renk planı", "Numune süreci"],
       },
       {
         name: "Promosyon Bez Çanta",
         category: "tote-bags",
         description: "Mağaza, fuar, etkinlik ve kampanyalar için sade bez çanta.",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         specs: ["Baskıya uygun yüzey", "Farklı ebatlar", "Toplu üretim"],
       },
       {
         name: "Markalı Bez Çanta",
         category: "tote-bags",
         description: "Marka kimliğine göre renk, baskı ve kullanım kurgusu.",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.school,
         specs: ["Logo baskı", "Ebat seçimi", "Üretici fiyatı"],
       },
     ],
@@ -296,7 +298,7 @@ export const dictionary = {
       whatsappCta: "Get a WhatsApp quote",
       whatsappShort: "Message on WhatsApp",
       instagram: "Open Instagram",
-      photoNote: "Replace with real photo",
+      photoNote: "Instagram product photo",
       menuLabel: "Main navigation",
       footerMenuLabel: "Footer navigation",
     },
@@ -335,7 +337,7 @@ export const dictionary = {
       socialDescription:
         "Current sales and customer communication happen mainly through Instagram. This website supports that trust with a manufacturer-focused presentation.",
       socialCard:
-        "Real Instagram posts, customer photos, or short production videos can be added here later.",
+        "Selected Instagram product photos are now placed across the site to support product discovery and quotation flow.",
       exportNote:
         "English and German content structure is ready for the export brand.",
     },
@@ -350,7 +352,7 @@ export const dictionary = {
         title: "Sock Production",
         description: "Daily, colorful, patterned, and brand-specific sock options.",
         href: "socks",
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         imageAlt: "Area to replace with a real sock product photo",
         note: "Replace with a real sock product photo.",
       },
@@ -358,7 +360,7 @@ export const dictionary = {
         title: "Tote Bags",
         description: "Tote bags for promotions, stores, events, and brand use.",
         href: "tote-bags",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         imageAlt: "Area to replace with a real tote bag photo",
         note: "Replace with a real tote bag photo.",
       },
@@ -366,7 +368,7 @@ export const dictionary = {
         title: "Custom Production",
         description: "Production planning by logo, color, pattern, and quantity.",
         href: "custom-production",
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         imageAlt: "Area to replace with a real custom sample photo",
         note: "Replace with a real custom sample photo.",
       },
@@ -374,7 +376,7 @@ export const dictionary = {
         title: "Wholesale",
         description: "Manufacturer quotes for stock products and recurring orders.",
         href: "wholesale",
-        image: "/images/placeholder-wholesale.svg",
+        image: instagramMedia.socks.wholesale,
         imageAlt: "Area to replace with a real wholesale product photo",
         note: "Replace with a real wholesale product photo.",
       },
@@ -414,7 +416,7 @@ export const dictionary = {
         description:
           "Contact the manufacturer directly for stock products, patterned collections, and brand-specific sock projects.",
         bullets: ["Patterned socks", "Logo socks", "Wholesale stock products", "Sample-led custom production"],
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         sectionEyebrow: "Sock options",
         sectionTitle: "Models suitable for stock and custom production",
         sectionDescription:
@@ -427,7 +429,7 @@ export const dictionary = {
         description:
           "Printable tote bag production for stores, events, fairs, and corporate promotion needs.",
         bullets: ["Promotional bags", "Branded tote bags", "Different size options", "Bulk orders"],
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         sectionEyebrow: "Tote bag options",
         sectionTitle: "Production for promotion and brand use",
         sectionDescription:
@@ -440,7 +442,7 @@ export const dictionary = {
         description:
           "We clarify your product according to use case, brand language, quantity, and delivery plan.",
         bullets: ["Need analysis", "Logo and pattern adaptation", "Sample review", "Production plan"],
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         sectionEyebrow: "Process",
         sectionTitle: "A clear custom production process",
         sectionDescription:
@@ -459,7 +461,7 @@ export const dictionary = {
         description:
           "Wholesale quotes for socks and tote bags for stores, corporate customers, and promotional product companies.",
         bullets: ["Manufacturer quote", "Stock product alternatives", "Recurring order support", "Fast WhatsApp response"],
-        image: "/images/placeholder-wholesale.svg",
+        image: instagramMedia.socks.wholesale,
         sectionEyebrow: "Wholesale process",
         sectionTitle: "A professional quote flow beyond Instagram",
         sectionDescription:
@@ -503,28 +505,28 @@ export const dictionary = {
         name: "Patterned Socks",
         category: "socks",
         description: "Colorful collections, stock models, and brand adaptations.",
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         specs: ["Stock or custom pattern", "Different size options", "Wholesale order"],
       },
       {
         name: "Logo Socks",
         category: "socks",
         description: "Logo application for corporate gifts, events, and brand projects.",
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         specs: ["Logo adaptation", "Color planning", "Sample process"],
       },
       {
         name: "Promotional Tote Bag",
         category: "tote-bags",
         description: "Simple tote bags for stores, fairs, events, and campaigns.",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         specs: ["Printable surface", "Different sizes", "Bulk production"],
       },
       {
         name: "Branded Tote Bag",
         category: "tote-bags",
         description: "Color, print, and use-case planning according to brand identity.",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.school,
         specs: ["Logo print", "Size selection", "Manufacturer price"],
       },
     ],
@@ -542,7 +544,7 @@ export const dictionary = {
       whatsappCta: "Angebot per WhatsApp",
       whatsappShort: "WhatsApp schreiben",
       instagram: "Instagram öffnen",
-      photoNote: "Durch echtes Foto ersetzen",
+      photoNote: "Instagram-Produktfoto",
       menuLabel: "Hauptnavigation",
       footerMenuLabel: "Footer-Navigation",
     },
@@ -581,7 +583,7 @@ export const dictionary = {
       socialDescription:
         "Aktuelle Verkäufe und Kundenkommunikation laufen vor allem über Instagram. Die Website unterstützt dieses Vertrauen mit einem klaren Herstellerauftritt.",
       socialCard:
-        "Echte Instagram-Beiträge, Kundenfotos oder kurze Produktionsvideos können später hier ergänzt werden.",
+        "Ausgewaehlte Instagram-Produktfotos sind jetzt an passenden Stellen der Website integriert.",
       exportNote:
         "Englische und deutsche Inhalte sind für die Exportmarke vorbereitet.",
     },
@@ -596,7 +598,7 @@ export const dictionary = {
         title: "Sockenproduktion",
         description: "Alltags-, farbige, gemusterte und markenspezifische Socken.",
         href: "socks",
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         imageAlt: "Bereich für echtes Socken-Produktfoto",
         note: "Durch echtes Sockenfoto ersetzen.",
       },
@@ -604,7 +606,7 @@ export const dictionary = {
         title: "Baumwolltaschen",
         description: "Taschen für Promotion, Handel, Events und Markenkommunikation.",
         href: "tote-bags",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         imageAlt: "Bereich für echtes Baumwolltaschenfoto",
         note: "Durch echtes Taschenfoto ersetzen.",
       },
@@ -612,7 +614,7 @@ export const dictionary = {
         title: "Sonderproduktion",
         description: "Produktionsplanung nach Logo, Farbe, Muster und Menge.",
         href: "custom-production",
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         imageAlt: "Bereich für echtes Musterfoto",
         note: "Durch echtes Musterfoto ersetzen.",
       },
@@ -620,7 +622,7 @@ export const dictionary = {
         title: "Großhandel",
         description: "Herstellerangebote für Lagerware und wiederkehrende Bestellungen.",
         href: "wholesale",
-        image: "/images/placeholder-wholesale.svg",
+        image: instagramMedia.socks.wholesale,
         imageAlt: "Bereich für echtes Großhandelsfoto",
         note: "Durch echtes Großhandelsfoto ersetzen.",
       },
@@ -660,7 +662,7 @@ export const dictionary = {
         description:
           "Kontaktieren Sie den Hersteller direkt für Lagerware, gemusterte Kollektionen und markenspezifische Sockenprojekte.",
         bullets: ["Gemusterte Socken", "Logo-Socken", "Großhandels-Lagerware", "Sonderproduktion mit Musterprozess"],
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         sectionEyebrow: "Sockenoptionen",
         sectionTitle: "Modelle für Lagerware und Sonderproduktion",
         sectionDescription:
@@ -673,7 +675,7 @@ export const dictionary = {
         description:
           "Bedruckbare Baumwolltaschen für Shops, Events, Messen und Firmenpromotion.",
         bullets: ["Promotiontaschen", "Markentaschen", "Verschiedene Größen", "Mengenbestellungen"],
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         sectionEyebrow: "Taschenoptionen",
         sectionTitle: "Produktion für Promotion und Markenauftritt",
         sectionDescription:
@@ -686,7 +688,7 @@ export const dictionary = {
         description:
           "Wir klären Ihr Produkt nach Einsatzzweck, Markenauftritt, Menge und Lieferplan.",
         bullets: ["Bedarfsanalyse", "Logo- und Musteranpassung", "Musterprüfung", "Produktionsplan"],
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         sectionEyebrow: "Prozess",
         sectionTitle: "Klarer Ablauf für Sonderproduktion",
         sectionDescription:
@@ -705,7 +707,7 @@ export const dictionary = {
         description:
           "Großhandelsangebote für Socken und Baumwolltaschen für Shops, Firmenkunden und Promotionsanbieter.",
         bullets: ["Herstellerangebot", "Lagerware-Alternativen", "Unterstützung für regelmäßige Bestellungen", "Schnelle Antwort per WhatsApp"],
-        image: "/images/placeholder-wholesale.svg",
+        image: instagramMedia.socks.wholesale,
         sectionEyebrow: "Großhandelsprozess",
         sectionTitle: "Professioneller Angebotsprozess außerhalb von Instagram",
         sectionDescription:
@@ -749,28 +751,28 @@ export const dictionary = {
         name: "Gemusterte Socken",
         category: "socks",
         description: "Farbige Kollektionen, Lagermodelle und Markenanpassungen.",
-        image: "/images/placeholder-socks.svg",
+        image: instagramMedia.socks.hero,
         specs: ["Lager- oder Sondermuster", "Verschiedene Größen", "Großhandelsbestellung"],
       },
       {
         name: "Logo-Socken",
         category: "socks",
         description: "Logo-Anwendung für Firmengeschenke, Events und Markenprojekte.",
-        image: "/images/placeholder-custom.svg",
+        image: instagramMedia.socks.bamboo,
         specs: ["Logo-Anpassung", "Farbplanung", "Musterprozess"],
       },
       {
         name: "Promotion-Baumwolltasche",
         category: "tote-bags",
         description: "Einfache Baumwolltaschen für Shops, Messen, Events und Kampagnen.",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.custom,
         specs: ["Bedruckbare Fläche", "Verschiedene Größen", "Mengenproduktion"],
       },
       {
         name: "Marken-Baumwolltasche",
         category: "tote-bags",
         description: "Farbe, Druck und Nutzung nach Markenidentität geplant.",
-        image: "/images/placeholder-tote.svg",
+        image: instagramMedia.tote.school,
         specs: ["Logo-Druck", "Größenauswahl", "Herstellerpreis"],
       },
     ],
