@@ -71,6 +71,14 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
               {images.length > 0 && (
                 <p className="mt-2 text-sm text-ink/50">{images.length} ürün</p>
               )}
+              {/* Drive klasör yolu — fotoğraf yükleyici için referans */}
+              <div className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-ink/5 px-3 py-1.5">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink/40">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span className="font-mono text-[10px] text-ink/50">Drive: </span>
+                <span className="font-mono text-[10px] font-semibold text-ink/70">{categoryDir} / {subcategory}</span>
+              </div>
             </div>
             <WhatsAppButton label={dict.common.whatsappCta} />
           </div>

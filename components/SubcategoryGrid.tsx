@@ -10,17 +10,19 @@ type SubcategoryGridProps = {
   subcategories: readonly SubcategoryDef[];
   imageMap: Record<string, string[]>;
   basePath: string; // örn: /tr/women
+  categoryDir: string; // Drive ana klasörü: kadin / erkek / cocuk / bez-canta
 };
 
 const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export function SubcategoryGrid({ subcategories, imageMap, basePath }: SubcategoryGridProps) {
+export function SubcategoryGrid({ subcategories, imageMap, basePath, categoryDir }: SubcategoryGridProps) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {subcategories.map(({ slug, label }) => {
         const images = imageMap[slug] ?? [];
         const firstImage = images[0] ?? null;
         const previewImages = images.slice(0, 4);
+        const drivePath = `${categoryDir} / ${slug}`;
 
         return (
           <Link
@@ -32,7 +34,6 @@ export function SubcategoryGrid({ subcategories, imageMap, basePath }: Subcatego
             <div className="relative aspect-square w-full overflow-hidden">
               {firstImage ? (
                 previewImages.length >= 4 ? (
-                  // 4+ fotoğraf varsa 2×2 grid önizleme
                   <div className="grid h-full w-full grid-cols-2 gap-0.5">
                     {previewImages.map((src, i) => (
                       <div key={i} className="relative overflow-hidden">
@@ -47,7 +48,6 @@ export function SubcategoryGrid({ subcategories, imageMap, basePath }: Subcatego
                     ))}
                   </div>
                 ) : (
-                  // Az fotoğraf varsa tek büyük görsel
                   <Image
                     src={`${b}${firstImage}`}
                     alt={`${label} ürün fotoğrafı`}
@@ -61,6 +61,14 @@ export function SubcategoryGrid({ subcategories, imageMap, basePath }: Subcatego
                   <span className="text-5xl opacity-10">🧦</span>
                 </div>
               )}
+
+              {/* Drive klasör etiketi — sağ üst köşe */}
+              <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-sm">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span className="font-mono text-[9px] font-medium text-white/90">{drivePath}</span>
+              </div>
             </div>
 
             {/* Bilgi alanı */}

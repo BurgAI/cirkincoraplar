@@ -63,6 +63,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
               subcategories={content.subcategories}
               imageMap={imageMap}
               basePath={`/${activeLocale}/${pageSlug}`}
+              categoryDir={categoryDir}
             />
           </div>
         </section>
