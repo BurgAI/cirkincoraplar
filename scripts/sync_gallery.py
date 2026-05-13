@@ -14,6 +14,37 @@ CATEGORY_MAP = [
     ("1KZeJxzm6cSoY3JhQTdCyCrdRX14w5DVB", "public/images/bez-canta"),
 ]
 
+# Drive alt klasör slug → site kodu eşlemesi
+# Drive'da klasör adı ne olursa olsun (Türkçe veya kod), bu tablo doğru bölüme yönlendirir
+SLUG_MAP: dict[str, str] = {
+    # Kadın
+    "bamboo": "k-01",
+    "diz-alti": "k-02",
+    "diz-ustu": "k-03",
+    "en-yeniler": "k-04",
+    "ince-corap": "k-05",
+    "nakisli-corap": "k-06",
+    "patik": "k-07",
+    "renkli-corap": "k-08",
+    "sneaker-ve-babet": "k-09",
+    "soket": "k-10",
+    "pilates-corap": "k-11",  # Drive'da varsa site navigasyonuna eklenebilir
+    # Erkek
+    "bambu-corap": "e-01",
+    "desenli-corap": "e-02",
+    "diyabetik-corap": "e-03",
+    "kislik-corap": "e-04",
+    "patik-corap": "e-05",
+    "sneaker-corap": "e-06",
+    # Çocuk
+    "erkek-cocuk": "c-01",
+    "kiz-cocuk": "c-02",
+    "taraftar": "c-03",
+    # Bez çanta
+    "baskili-bez-canta": "b-01",
+    "ozel-tasarim-bez-canta": "b-02",
+}
+
 
 def slugify(name: str) -> str:
     name = name.replace("ı", "i").replace("İ", "i")
@@ -23,7 +54,8 @@ def slugify(name: str) -> str:
     name = name.replace("ö", "o").replace("Ö", "o")
     name = name.replace("ç", "c").replace("Ç", "c")
     name = name.lower().strip()
-    return re.sub(r"[^a-z0-9]+", "-", name).strip("-")
+    slug = re.sub(r"[^a-z0-9]+", "-", name).strip("-")
+    return SLUG_MAP.get(slug, slug)
 
 
 def clean_dir(directory: str) -> None:
