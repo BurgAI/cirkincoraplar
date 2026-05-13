@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { siteConfig } from "@/data/siteConfig";
+import Link from "next/link";
 
 type SubcategoryDef = {
   slug: string;
@@ -9,52 +9,69 @@ type SubcategoryDef = {
 type SubcategoryGridProps = {
   subcategories: readonly SubcategoryDef[];
   imageMap: Record<string, string[]>;
+  basePath: string; // örn: /tr/women
 };
 
 const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export function SubcategoryGrid({ subcategories, imageMap }: SubcategoryGridProps) {
+export function SubcategoryGrid({ subcategories, imageMap, basePath }: SubcategoryGridProps) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {subcategories.map(({ slug, label }) => {
         const images = imageMap[slug] ?? [];
         const firstImage = images[0] ?? null;
-        const whatsappMsg = encodeURIComponent(
-          `Merhaba, ${label} çorapları hakkında bilgi almak istiyorum.`
-        );
-        const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber.replace(/\D/g, "")}?text=${whatsappMsg}`;
+        const previewImages = images.slice(0, 4);
 
         return (
-          <a
+          <Link
             key={slug}
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="group relative overflow-hidden rounded-[2rem] bg-mist transition hover:shadow-lg"
+            href={`${basePath}/${slug}`}
+            className="group overflow-hidden rounded-[2rem] bg-mist transition hover:shadow-lg"
           >
+            {/* Fotoğraf önizlemesi */}
             <div className="relative aspect-square w-full overflow-hidden">
               {firstImage ? (
-                <Image
-                  src={`${b}${firstImage}`}
-                  alt={`${label} ürün fotoğrafı`}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                />
+                previewImages.length >= 4 ? (
+                  // 4+ fotoğraf varsa 2×2 grid önizleme
+                  <div className="grid h-full w-full grid-cols-2 gap-0.5">
+                    {previewImages.map((src, i) => (
+                      <div key={i} className="relative overflow-hidden">
+                        <Image
+                          src={`${b}${src}`}
+                          alt={`${label} ${i + 1}`}
+                          fill
+                          className="object-cover transition duration-500 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 17vw, (min-width: 640px) 25vw, 50vw"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  // Az fotoğraf varsa tek büyük görsel
+                  <Image
+                    src={`${b}${firstImage}`}
+                    alt={`${label} ürün fotoğrafı`}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                )
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-mist to-cotton">
-                  <span className="text-4xl opacity-20">🧦</span>
+                  <span className="text-5xl opacity-10">🧦</span>
                 </div>
               )}
             </div>
+
+            {/* Bilgi alanı */}
             <div className="p-5">
               <h3 className="text-base font-semibold text-ink">{label}</h3>
-              {images.length > 0 && (
-                <p className="mt-1 text-xs text-ink/50">{images.length} ürün</p>
-              )}
-              <p className="mt-3 text-xs font-medium text-thread">WhatsApp ile teklif al →</p>
+              <p className="mt-1 text-xs text-ink/45">
+                {images.length > 0 ? `${images.length} ürün` : "Yakında"}
+              </p>
+              <p className="mt-3 text-xs font-medium text-thread">Koleksiyonu gör →</p>
             </div>
-          </a>
+          </Link>
         );
       })}
     </div>

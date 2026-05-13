@@ -61,6 +61,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
             <SubcategoryGrid
               subcategories={content.subcategories}
               imageMap={imageMap}
+              basePath={`/${activeLocale}/${pageSlug}`}
             />
           </div>
         </section>
