@@ -32,10 +32,13 @@ def clean_dir(directory: str) -> None:
         if os.path.isdir(path):
             slug = slugify(name)
             new_path = os.path.join(directory, slug)
-            if path != new_path:
-                if os.path.exists(new_path):
+            if name != slug:
+                # macOS büyük/küçük harf duyarsız: ara adım kullan
+                tmp_path = os.path.join(directory, "_tmp_" + slug)
+                os.rename(path, tmp_path)
+                if os.path.exists(new_path) and tmp_path.lower() != new_path.lower():
                     shutil.rmtree(new_path)
-                os.rename(path, new_path)
+                os.rename(tmp_path, new_path)
                 path = new_path
             for f in list(os.listdir(path)):
                 f_path = os.path.join(path, f)
@@ -50,7 +53,7 @@ for folder_id, out_dir in CATEGORY_MAP:
     url = f"https://drive.google.com/drive/folders/{folder_id}"
     print(f"\n--- {out_dir} syncleniyor ---")
     result = subprocess.run(
-        ["gdown", "--folder", url, "-O", out_dir],
+        [sys.executable, "-m", "gdown", "--folder", "--remaining-ok", url, "-O", out_dir],
         capture_output=True,
         text=True,
     )
