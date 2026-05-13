@@ -3,7 +3,12 @@
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 
-export function LocationMap() {
+type LocationMapProps = {
+  openLabel?: string;
+  expandLabel?: string;
+};
+
+export function LocationMap({ openLabel = "Açık", expandLabel = "Haritayı genişlet" }: LocationMapProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -153,7 +158,7 @@ export function LocationMap() {
               animate={{ scale: isHovered ? 1.05 : 1 }}
             >
               <span className="h-1.5 w-1.5 rounded-full bg-eucalyptus" />
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-ink/50">Açık</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-ink/50">{openLabel}</span>
             </motion.div>
           </div>
 
@@ -193,7 +198,7 @@ export function LocationMap() {
         animate={{ opacity: isHovered && !isExpanded ? 1 : 0, y: isHovered ? 0 : 4 }}
         transition={{ duration: 0.2 }}
       >
-        Haritayı genişlet
+        {expandLabel}
       </motion.p>
     </motion.div>
   );

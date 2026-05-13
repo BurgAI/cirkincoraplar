@@ -63,7 +63,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
               subcategories={content.subcategories}
               imageMap={imageMap}
               basePath={`/${activeLocale}/${pageSlug}`}
-              categoryDir={categoryDir}
+              texts={{
+                viewCollection: dict.common.viewCollection,
+                comingSoon: dict.common.comingSoon,
+                itemCount: (n) => dict.common.itemCount.replace("{n}", String(n)),
+              }}
             />
           </div>
         </section>
@@ -286,7 +290,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
               <h2 className="text-lg font-semibold text-ink">{content.location}</h2>
               <p className="mt-3 text-sm text-ink/70">{content.locationText}</p>
               <div className="mt-5">
-                <LocationMap />
+                <LocationMap openLabel={dict.common.open} expandLabel={dict.common.expand} />
               </div>
             </div>
           </div>

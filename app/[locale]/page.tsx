@@ -39,15 +39,15 @@ export default async function HomePage({ params }: HomePageProps) {
         imageAlt={dict.categories[0].imageAlt}
         whatsappLabel={dict.common.whatsappCta}
         primaryHref="#products"
-        primaryLabel="Ürünleri İncele"
+        primaryLabel={dict.common.browseProducts}
       />
 
       <section id="products" className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <SectionTitle
             eyebrow="Shop the edit"
-            title="Günlük stil için seçilmiş ürünler"
-            description="Çorap, bez çanta ve özel üretim seçenekleri. Kısa, net, görsel odaklı."
+            title={dict.home.shopTitle}
+            description={dict.home.shopDescription}
           />
           <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {dict.categories.map((category) => (
@@ -62,11 +62,11 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid gap-8 md:grid-cols-[0.72fr_1.28fr] md:items-end">
             <SectionTitle
               eyebrow="Bestsellers preview"
-              title="Instagram’da sevilen modeller"
-              description="Sepet, varyasyon, kampanya ve çok satanlar bölümleri için hazır ürün mimarisi."
+              title={dict.home.bestsellersTitle}
+              description={dict.home.shopDescription}
             />
             <p className="text-sm leading-6 text-ink/55 md:justify-self-end md:text-right">
-              Renk, beden, baskı ve adet varyasyonları sonraki ürün kataloğuna bağlanabilir.
+              {dict.home.bestsellersNote}
             </p>
           </div>
           <div className="mt-9">
@@ -93,10 +93,10 @@ export default async function HomePage({ params }: HomePageProps) {
                 Tote bag studio
               </p>
               <h2 className="mt-4 text-4xl font-medium leading-tight md:text-5xl">
-                Kafe, butik ve günlük şehir hayatı için.
+                {dict.home.toteTitle}
               </h2>
               <p className="mt-4 text-sm leading-6 text-white/64">
-                Minimal baskı, doğal kumaş hissi, Instagram’a uygun ürün hikayesi.
+                {dict.home.toteDescription}
               </p>
             </div>
             <div className="relative min-h-[260px] overflow-hidden rounded-[2rem] bg-mist">
@@ -118,11 +118,11 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid gap-8 md:grid-cols-[.9fr_1.1fr] md:items-center">
             <SectionTitle
               eyebrow="Built for growth"
-              title="Bugünün vitrini, yarının e-ticaret altyapısı"
-              description="Kategori, ürün, görsel ve teklif akışı şimdiden ölçeklenebilir şekilde ayrıldı."
+              title={dict.home.growthTitle}
+              description={dict.home.growthDescription}
             />
             <div className="grid gap-3 sm:grid-cols-2">
-              {["Sepet sistemi", "Ürün varyasyonları", "Çok satanlar", "Kampanyalar", "Çoklu dil", "WhatsApp teklif akışı"].map((item) => (
+              {dict.home.growthFeatures.map((item) => (
                 <div key={item} className="rounded-2xl bg-white px-5 py-4 text-sm font-semibold text-ink shadow-soft">
                   {item}
                 </div>

@@ -56,7 +56,7 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
       <section className="border-b border-ink/8 bg-white py-8 md:py-12">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <nav className="mb-4 flex items-center gap-2 text-xs text-ink/45">
-            <Link href={`/${activeLocale}`} className="hover:text-ink">Ana Sayfa</Link>
+            <Link href={`/${activeLocale}`} className="hover:text-ink">{dict.nav.home}</Link>
             <span>/</span>
             <Link href={`/${activeLocale}/${slug}`} className="hover:text-ink">{page.title}</Link>
             <span>/</span>
@@ -69,16 +69,8 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
               </p>
               <h1 className="mt-2 text-3xl font-semibold text-ink md:text-4xl">{subDef.label}</h1>
               {images.length > 0 && (
-                <p className="mt-2 text-sm text-ink/50">{images.length} ürün</p>
+                <p className="mt-2 text-sm text-ink/50">{dict.common.itemCount.replace("{n}", String(images.length))}</p>
               )}
-              {/* Drive klasör yolu — fotoğraf yükleyici için referans */}
-              <div className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-ink/5 px-3 py-1.5">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink/40">
-                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-                </svg>
-                <span className="font-mono text-[10px] text-ink/50">Drive: </span>
-                <span className="font-mono text-[10px] font-semibold text-ink/70">{categoryDir} / {subcategory}</span>
-              </div>
             </div>
             <WhatsAppButton label={dict.common.whatsappCta} />
           </div>

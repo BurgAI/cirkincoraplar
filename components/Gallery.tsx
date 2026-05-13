@@ -23,7 +23,7 @@ export function Gallery({ dict }: GalleryProps) {
               Instagram native
             </p>
             <h2 className="text-3xl font-medium text-ink md:text-5xl">
-              Görsel vitrin
+              {dict.common.galleryTitle}
             </h2>
           </div>
           <a

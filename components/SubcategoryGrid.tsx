@@ -9,20 +9,23 @@ type SubcategoryDef = {
 type SubcategoryGridProps = {
   subcategories: readonly SubcategoryDef[];
   imageMap: Record<string, string[]>;
-  basePath: string; // örn: /tr/women
-  categoryDir: string; // Drive ana klasörü: kadin / erkek / cocuk / bez-canta
+  basePath: string;
+  texts: {
+    viewCollection: string;
+    comingSoon: string;
+    itemCount: (n: number) => string;
+  };
 };
 
 const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export function SubcategoryGrid({ subcategories, imageMap, basePath, categoryDir }: SubcategoryGridProps) {
+export function SubcategoryGrid({ subcategories, imageMap, basePath, texts }: SubcategoryGridProps) {
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {subcategories.map(({ slug, label }) => {
         const images = imageMap[slug] ?? [];
         const firstImage = images[0] ?? null;
         const previewImages = images.slice(0, 4);
-        const drivePath = `${categoryDir} / ${slug}`;
 
         return (
           <Link
@@ -61,23 +64,15 @@ export function SubcategoryGrid({ subcategories, imageMap, basePath, categoryDir
                   <span className="text-5xl opacity-10">🧦</span>
                 </div>
               )}
-
-              {/* Drive klasör etiketi — sağ üst köşe */}
-              <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-sm">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-                </svg>
-                <span className="font-mono text-[9px] font-medium text-white/90">{drivePath}</span>
-              </div>
             </div>
 
             {/* Bilgi alanı */}
             <div className="p-5">
               <h3 className="text-base font-semibold text-ink">{label}</h3>
               <p className="mt-1 text-xs text-ink/45">
-                {images.length > 0 ? `${images.length} ürün` : "Yakında"}
+                {images.length > 0 ? texts.itemCount(images.length) : texts.comingSoon}
               </p>
-              <p className="mt-3 text-xs font-medium text-thread">Koleksiyonu gör →</p>
+              <p className="mt-3 text-xs font-medium text-thread">{texts.viewCollection}</p>
             </div>
           </Link>
         );
