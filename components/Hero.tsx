@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PhotoCode } from "@/components/PhotoCode";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 type HeroProps = {
@@ -59,6 +60,7 @@ export function Hero({
           </div>
         </div>
         <div className="relative min-h-[58svh] overflow-hidden rounded-[2rem] bg-mist md:min-h-0">
+          <PhotoCode code="H-01" />
           <Image
             src={image}
             alt={imageAlt}

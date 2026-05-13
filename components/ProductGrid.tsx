@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PhotoCode } from "@/components/PhotoCode";
 import type { Dictionary } from "@/data/i18n";
 
 type ProductGridProps = {
@@ -14,12 +15,13 @@ export function ProductGrid({ products, category, photoNote }: ProductGridProps)
 
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {visibleProducts.map((product) => (
+      {visibleProducts.map((product, index) => (
         <article
           key={product.name}
           className="group overflow-hidden bg-white"
         >
           <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-mist">
+            <PhotoCode code={`P-${String(index + 1).padStart(2, "0")}`} />
             <Image
               src={product.image}
               alt={`${product.name} ${photoNote}`}

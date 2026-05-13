@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PhotoCode } from "@/components/PhotoCode";
 import type { Locale } from "@/data/i18n";
 
 type CategoryCardProps = {
@@ -15,12 +16,23 @@ type CategoryCardProps = {
 };
 
 export function CategoryCard({ category, locale }: CategoryCardProps) {
+  const codeMap: Record<string, string> = {
+    "socks#women": "C-01",
+    "socks#men": "C-02",
+    "socks#kids": "C-03",
+    "tote-bags": "C-04",
+    socks: "C-01",
+    "custom-production": "C-03",
+    wholesale: "C-04",
+  };
+
   return (
     <Link
       href={`/${locale}/${category.href}`}
       className="group block"
     >
       <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-mist">
+        <PhotoCode code={codeMap[category.href] ?? "C-00"} />
         <Image
           src={category.image}
           alt={category.imageAlt}

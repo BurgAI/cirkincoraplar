@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PhotoCode } from "@/components/PhotoCode";
 import type { Dictionary } from "@/data/i18n";
 
 type ToteCollectionsProps = {
@@ -34,6 +35,7 @@ export function ToteCollections({ content }: ToteCollectionsProps) {
                   index < 2 ? "aspect-[4/5] md:aspect-[5/4]" : "aspect-[4/5]"
                 }`}
               >
+                <PhotoCode code={`T-${String(index + 1).padStart(2, "0")}`} />
                 <Image
                   src={collection.image}
                   alt={collection.imageAlt}

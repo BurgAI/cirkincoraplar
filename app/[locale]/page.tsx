@@ -5,6 +5,7 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { CTASection } from "@/components/CTASection";
 import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
+import { PhotoCode } from "@/components/PhotoCode";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
@@ -73,6 +74,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-5 px-4 md:grid-cols-[1.1fr_.9fr] md:px-6">
           <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] bg-mist">
+            <PhotoCode code="L-01" />
             <Image
               src={instagramMedia.tote.custom}
               alt="Modern kullanım için bez çanta"
@@ -94,6 +96,7 @@ export default async function HomePage({ params }: HomePageProps) {
               </p>
             </div>
             <div className="relative min-h-[260px] overflow-hidden rounded-[2rem] bg-mist">
+              <PhotoCode code="L-02" />
               <Image
                 src={instagramMedia.tote.school}
                 alt="Lifestyle bez çanta fotoğrafı"

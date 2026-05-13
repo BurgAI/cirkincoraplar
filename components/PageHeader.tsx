@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PhotoCode } from "@/components/PhotoCode";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 type PageHeaderProps = {
@@ -6,6 +7,7 @@ type PageHeaderProps = {
   title: string;
   description: string;
   image: string;
+  photoCode?: string;
   bullets?: readonly string[];
   whatsappLabel: string;
 };
@@ -15,6 +17,7 @@ export function PageHeader({
   title,
   description,
   image,
+  photoCode = "D-01",
   bullets,
   whatsappLabel,
 }: PageHeaderProps) {
@@ -42,6 +45,7 @@ export function PageHeader({
           </div>
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-soft">
+          <PhotoCode code={photoCode} />
           <Image
             src={image}
             alt={`${title} ${whatsappLabel}`}

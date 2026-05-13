@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PhotoCode } from "@/components/PhotoCode";
 import { getGalleryImages } from "@/lib/gallery";
 import { siteConfig } from "@/data/siteConfig";
 import type { Dictionary } from "@/data/i18n";
@@ -48,6 +49,7 @@ export function Gallery({ dict }: GalleryProps) {
                   : " aspect-square"
               }`}
             >
+              <PhotoCode code={`G-${String(i + 1).padStart(2, "0")}`} />
               <Image
                 src={`${base}${src}`}
                 alt={`Çirkin Çoraplar ürün fotoğrafı ${i + 1}`}
