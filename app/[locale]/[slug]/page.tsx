@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
+import { FAQSection } from "@/components/FAQSection";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
+import { ToteCollections } from "@/components/ToteCollections";
 import {
   dictionary,
   isLocale,
@@ -72,22 +74,12 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
     return (
       <>
         <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
-        <section className="py-14 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <SectionTitle
-              eyebrow={content.sectionEyebrow}
-              title={content.sectionTitle}
-              description={content.sectionDescription}
-            />
-            <div className="mt-8">
-              <ProductGrid
-                products={dict.products}
-                category="tote-bags"
-                photoNote={dict.common.photoNote}
-              />
-            </div>
-          </div>
-        </section>
+        <ToteCollections content={content} />
+        <FAQSection
+          eyebrow={content.faqEyebrow}
+          title={content.faqTitle}
+          items={content.faq}
+        />
         <CTASection
           label={dict.cta.label}
           title={content.ctaTitle}
@@ -111,6 +103,17 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
               title={content.sectionTitle}
               description={content.sectionDescription}
             />
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {content.productionRules.map((rule) => (
+                <div key={rule.title} className="rounded-[1.5rem] bg-cotton p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-thread">
+                    {rule.label}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-medium text-ink">{rule.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-ink/62">{rule.description}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-8 grid gap-4 md:grid-cols-4">
               {content.steps.map((step, index) => (
                 <div key={step} className="rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
@@ -121,6 +124,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
             </div>
           </div>
         </section>
+        <FAQSection
+          eyebrow={content.faqEyebrow}
+          title={content.faqTitle}
+          items={content.faq}
+        />
         <CTASection
           label={dict.cta.label}
           title={content.ctaTitle}
