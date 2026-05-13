@@ -13,32 +13,29 @@ export function ProductGrid({ products, category, photoNote }: ProductGridProps)
     : products;
 
   return (
-    <div className="grid gap-5 md:grid-cols-2">
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {visibleProducts.map((product) => (
         <article
           key={product.name}
-          className="overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-soft"
+          className="group overflow-hidden bg-white"
         >
-          <div className="relative aspect-[4/3] bg-mist">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-mist">
             <Image
               src={product.image}
               alt={`${product.name} ${photoNote}`}
               fill
-              className="object-cover"
-              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover transition duration-500 group-hover:scale-105"
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             />
           </div>
-          <div className="p-5">
-            <h3 className="text-xl font-semibold text-ink">{product.name}</h3>
-            <p className="mt-2 text-sm leading-6 text-ink/70">{product.description}</p>
-            <ul className="mt-4 space-y-2">
-              {product.specs.map((spec) => (
-                <li key={spec} className="flex gap-2 text-sm text-ink/75">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-thread" />
-                  <span>{spec}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="px-1 pt-4">
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="text-base font-semibold text-ink">{product.name}</h3>
+              <span className="shrink-0 rounded-full bg-cotton px-3 py-1 text-xs font-semibold text-ink/65">
+                {product.specs[0]}
+              </span>
+            </div>
+            <p className="mt-2 text-sm leading-6 text-ink/58">{product.description}</p>
           </div>
         </article>
       ))}

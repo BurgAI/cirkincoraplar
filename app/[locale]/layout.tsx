@@ -51,8 +51,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <Header locale={activeLocale} dict={dict} />
       <main>{children}</main>
       <Footer locale={activeLocale} dict={dict} />
-      <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden">
-        <WhatsAppButton label={dict.common.whatsappCta} className="w-full shadow-soft" />
+      <div className="fixed bottom-4 right-4 z-40 md:hidden">
+        <WhatsAppButton label={dict.common.whatsappShort} className="min-h-11 px-4 py-2 shadow-soft" />
       </div>
     </>
   );

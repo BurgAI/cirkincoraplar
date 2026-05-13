@@ -13,32 +13,31 @@ type HeaderProps = {
 export function Header({ locale, dict }: HeaderProps) {
   const navigation = [
     { label: dict.nav.home, href: `/${locale}` },
-    { label: dict.nav.socks, href: `/${locale}/socks` },
+    { label: dict.nav.women, href: `/${locale}/socks#women` },
+    { label: dict.nav.men, href: `/${locale}/socks#men` },
+    { label: dict.nav.kids, href: `/${locale}/socks#kids` },
     { label: dict.nav.toteBags, href: `/${locale}/tote-bags` },
     { label: dict.nav.customProduction, href: `/${locale}/custom-production` },
-    { label: dict.nav.wholesale, href: `/${locale}/wholesale` },
-    { label: dict.nav.about, href: `/${locale}/about` },
-    { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
   return (
-    <header className="sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
+    <header className="sticky top-0 z-30 border-b border-ink/8 bg-white/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-6">
         <Link href={`/${locale}`} className="flex items-center gap-3">
-          <span className="relative h-14 w-14 overflow-hidden rounded-2xl border border-ink/10 bg-white">
+          <span className="relative h-11 w-11 overflow-hidden rounded-full border border-ink/10 bg-white">
             <Image
               src={siteConfig.logo}
               alt={`${siteConfig.name} logo`}
               fill
               className="object-cover"
-              sizes="56px"
+              sizes="44px"
             />
           </span>
           <span>
-            <span className="block text-lg font-semibold leading-tight text-ink">
+            <span className="block text-base font-semibold leading-tight text-ink">
               {siteConfig.name}
             </span>
-            <span className="block text-xs text-ink/55">{dict.common.manufacturer}</span>
+            <span className="block text-xs text-ink/50">{dict.common.brandLine}</span>
           </span>
         </Link>
         <div className="flex items-center gap-3 overflow-x-auto pb-1 md:overflow-visible md:pb-0">
@@ -47,7 +46,7 @@ export function Header({ locale, dict }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3 py-2 text-sm font-medium text-ink/70 transition hover:bg-mist hover:text-ink"
+                className="rounded-full px-3 py-2 text-sm font-medium text-ink/66 transition hover:bg-mist hover:text-ink"
               >
                 {item.label}
               </Link>

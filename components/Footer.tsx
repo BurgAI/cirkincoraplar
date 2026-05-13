@@ -12,12 +12,11 @@ type FooterProps = {
 export function Footer({ locale, dict }: FooterProps) {
   const navigation = [
     { label: dict.nav.home, href: `/${locale}` },
-    { label: dict.nav.socks, href: `/${locale}/socks` },
+    { label: dict.nav.women, href: `/${locale}/socks#women` },
+    { label: dict.nav.men, href: `/${locale}/socks#men` },
+    { label: dict.nav.kids, href: `/${locale}/socks#kids` },
     { label: dict.nav.toteBags, href: `/${locale}/tote-bags` },
     { label: dict.nav.customProduction, href: `/${locale}/custom-production` },
-    { label: dict.nav.wholesale, href: `/${locale}/wholesale` },
-    { label: dict.nav.about, href: `/${locale}/about` },
-    { label: dict.nav.contact, href: `/${locale}/contact` },
   ];
 
   return (
@@ -37,7 +36,7 @@ export function Footer({ locale, dict }: FooterProps) {
             <h2 className="text-xl font-semibold">{siteConfig.name}</h2>
           </div>
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/65">
-            {dict.meta.description} {dict.home.exportNote}
+            Instagram uyumlu çorap ve bez çanta vitrini. Hazır ürün, özel üretim ve toplu sipariş için sade teklif akışı.
           </p>
         </div>
         <nav className="grid grid-cols-2 gap-2 text-sm" aria-label={dict.common.footerMenuLabel}>

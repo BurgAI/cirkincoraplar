@@ -18,21 +18,20 @@ export function CategoryCard({ category, locale }: CategoryCardProps) {
   return (
     <Link
       href={`/${locale}/${category.href}`}
-      className="group overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-soft transition hover:-translate-y-1 hover:border-eucalyptus/40"
+      className="group block"
     >
-      <div className="relative aspect-[4/3] bg-mist">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-mist">
         <Image
           src={category.image}
           alt={category.imageAlt}
           fill
-          className="object-cover"
+          className="object-cover transition duration-500 group-hover:scale-105"
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
         />
-      </div>
-      <div className="p-5">
-        <h3 className="text-xl font-semibold text-ink">{category.title}</h3>
-        <p className="mt-2 text-sm leading-6 text-ink/70">{category.description}</p>
-        <p className="mt-4 text-xs font-medium text-eucalyptus">{category.note}</p>
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent p-5 text-white">
+          <h3 className="text-xl font-semibold">{category.title}</h3>
+          <p className="mt-1 text-sm leading-5 text-white/76">{category.description}</p>
+        </div>
       </div>
     </Link>
   );

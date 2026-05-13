@@ -14,15 +14,15 @@ export function Gallery({ dict }: GalleryProps) {
   if (images.length === 0) return null;
 
   return (
-    <section className="py-14 md:py-20">
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
+    <section className="py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-thread">
-              {dict.home.socialEyebrow}
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-thread">
+              Instagram native
             </p>
-            <h2 className="text-3xl font-semibold text-ink md:text-4xl">
-              {dict.home.socialTitle}
+            <h2 className="text-3xl font-medium text-ink md:text-5xl">
+              Görsel vitrin
             </h2>
           </div>
           <a
@@ -35,16 +35,16 @@ export function Gallery({ dict }: GalleryProps) {
           </a>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {images.map((src, i) => (
             <a
               key={src}
               href={siteConfig.instagramUrl}
               target="_blank"
               rel="noreferrer"
-              className={`group relative overflow-hidden rounded-2xl bg-mist${
+              className={`group relative overflow-hidden rounded-[1.5rem] bg-mist${
                 i === 0
-                  ? " col-span-2 aspect-[2/1] md:col-span-1 md:aspect-square"
+                  ? " col-span-2 aspect-[2/1] md:col-span-2 md:row-span-2 md:aspect-square"
                   : " aspect-square"
               }`}
             >
