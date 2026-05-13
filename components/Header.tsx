@@ -13,9 +13,9 @@ type HeaderProps = {
 export function Header({ locale, dict }: HeaderProps) {
   const navigation = [
     { label: dict.nav.home, href: `/${locale}` },
-    { label: dict.nav.women, href: `/${locale}/socks#women` },
-    { label: dict.nav.men, href: `/${locale}/socks#men` },
-    { label: dict.nav.kids, href: `/${locale}/socks#kids` },
+    { label: dict.nav.women, href: `/${locale}/women` },
+    { label: dict.nav.men, href: `/${locale}/men` },
+    { label: dict.nav.kids, href: `/${locale}/kids` },
     { label: dict.nav.toteBags, href: `/${locale}/tote-bags` },
     { label: dict.nav.customProduction, href: `/${locale}/custom-production` },
   ];

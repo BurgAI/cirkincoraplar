@@ -4,6 +4,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
+import { SubcategoryGrid } from "@/components/SubcategoryGrid";
 import { ToteCollections } from "@/components/ToteCollections";
 import {
   dictionary,
@@ -14,6 +15,7 @@ import {
   type Locale,
   type PageSlug,
 } from "@/data/i18n";
+import { getCategorySubfolders } from "@/lib/gallery";
 import { siteConfig } from "@/data/siteConfig";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
@@ -35,6 +37,42 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
   const activeLocale = locale as Locale;
   const pageSlug = slug as PageSlug;
   const dict = dictionary[activeLocale];
+
+  if (pageSlug === "women" || pageSlug === "men" || pageSlug === "kids") {
+    const categoryDir = pageSlug === "women" ? "kadin" : pageSlug === "men" ? "erkek" : "cocuk";
+    const content =
+      pageSlug === "women"
+        ? dict.pages.women
+        : pageSlug === "men"
+          ? dict.pages.men
+          : dict.pages.kids;
+
+    const subfolders = getCategorySubfolders(categoryDir);
+    const imageMap: Record<string, string[]> = {};
+    for (const sf of subfolders) {
+      imageMap[sf.slug] = sf.images;
+    }
+
+    return (
+      <>
+        <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
+        <section className="py-14 md:py-20">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <SubcategoryGrid
+              subcategories={content.subcategories}
+              imageMap={imageMap}
+            />
+          </div>
+        </section>
+        <CTASection
+          label={dict.cta.label}
+          title={content.ctaTitle}
+          description={dict.cta.description}
+          buttonLabel={dict.common.whatsappCta}
+        />
+      </>
+    );
+  }
 
   if (pageSlug === "socks") {
     const content = dict.pages.socks;

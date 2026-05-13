@@ -1,27 +1,61 @@
 import os
+import re
 import subprocess
 import sys
+import shutil
 
-FOLDER_ID = os.environ["GDRIVE_FOLDER_ID"]
-OUTPUT_DIR = "public/images/gallery"
 SUPPORTED = {".jpg", ".jpeg", ".webp", ".png", ".avif"}
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+# Drive klasör ID → yerel dizin eşlemesi (ana kategoriler)
+CATEGORY_MAP = [
+    ("1SFaVwLPwOkvtnVuPBFMzi_MK1Pxu4V5Z", "public/images/kadin"),
+    ("1MM0sziX_FbG4AVlO_BMip6t36S14zaux", "public/images/erkek"),
+    ("1qWes76sjFVjoT9ZbieRIuEsgu7BYfA5f", "public/images/cocuk"),
+    ("1KZeJxzm6cSoY3JhQTdCyCrdRX14w5DVB", "public/images/bez-canta"),
+]
 
-# gdown ile public Drive klasörünü indir
-result = subprocess.run(
-    ["gdown", "--folder", f"https://drive.google.com/drive/folders/{FOLDER_ID}", "-O", OUTPUT_DIR],
-    capture_output=True,
-    text=True,
-)
 
-print(result.stdout)
-if result.returncode != 0:
-    print(result.stderr)
-    sys.exit(1)
+def slugify(name: str) -> str:
+    name = name.replace("ı", "i").replace("İ", "i")
+    name = name.replace("ğ", "g").replace("Ğ", "g")
+    name = name.replace("ü", "u").replace("Ü", "u")
+    name = name.replace("ş", "s").replace("Ş", "s")
+    name = name.replace("ö", "o").replace("Ö", "o")
+    name = name.replace("ç", "c").replace("Ç", "c")
+    name = name.lower().strip()
+    return re.sub(r"[^a-z0-9]+", "-", name).strip("-")
 
-# Desteklenmeyen dosyaları temizle
-for f in os.listdir(OUTPUT_DIR):
-    if os.path.splitext(f)[1].lower() not in SUPPORTED:
-        os.remove(os.path.join(OUTPUT_DIR, f))
-        print(f"Silindi (desteklenmiyor): {f}")
+
+def clean_dir(directory: str) -> None:
+    for name in list(os.listdir(directory)):
+        path = os.path.join(directory, name)
+        if os.path.isdir(path):
+            slug = slugify(name)
+            new_path = os.path.join(directory, slug)
+            if path != new_path:
+                if os.path.exists(new_path):
+                    shutil.rmtree(new_path)
+                os.rename(path, new_path)
+                path = new_path
+            for f in list(os.listdir(path)):
+                f_path = os.path.join(path, f)
+                if os.path.isfile(f_path) and os.path.splitext(f)[1].lower() not in SUPPORTED:
+                    os.remove(f_path)
+        elif os.path.splitext(name)[1].lower() not in SUPPORTED:
+            os.remove(path)
+
+
+for folder_id, out_dir in CATEGORY_MAP:
+    os.makedirs(out_dir, exist_ok=True)
+    url = f"https://drive.google.com/drive/folders/{folder_id}"
+    print(f"\n--- {out_dir} syncleniyor ---")
+    result = subprocess.run(
+        ["gdown", "--folder", url, "-O", out_dir],
+        capture_output=True,
+        text=True,
+    )
+    print(result.stdout)
+    if result.returncode != 0:
+        print(result.stderr, file=sys.stderr)
+    clean_dir(out_dir)
+    print(f"Tamam: {out_dir}")

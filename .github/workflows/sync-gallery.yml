@@ -24,8 +24,6 @@ jobs:
         run: pip install gdown
 
       - name: Sync photos from Google Drive
-        env:
-          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
         run: python scripts/sync_gallery.py
 
       - name: Commit and push new photos
@@ -33,7 +31,7 @@ jobs:
         run: |
           git config user.email "galeri-bot@cirkincoraplar.com"
           git config user.name "Galeri Bot"
-          git add public/images/gallery/
+          git add public/images/kadin/ public/images/erkek/ public/images/cocuk/ public/images/bez-canta/
           if git diff --staged --quiet; then
             echo "Yeni fotoğraf yok."
             echo "changed=false" >> $GITHUB_OUTPUT
