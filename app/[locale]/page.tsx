@@ -10,7 +10,7 @@ import { PhotoCode } from "@/components/PhotoCode";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
-import { instagramMedia } from "@/data/media";
+import { getFirstCategoryImage } from "@/lib/gallery";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -26,13 +26,16 @@ export default async function HomePage({ params }: HomePageProps) {
   const activeLocale = locale as Locale;
   const dict = dictionary[activeLocale];
 
+  const heroImage = getFirstCategoryImage("kadin", "/images/placeholder-socks.svg");
+  const toteImage = getFirstCategoryImage("bez-canta", "/images/placeholder-tote.svg");
+
   return (
     <>
       <Hero
         eyebrow="Çirkin Çoraplar Studio"
         title={dict.home.heroTitle}
         description={dict.home.heroDescription}
-        image={instagramMedia.socks.pilates}
+        image={heroImage}
         imageAlt={dict.categories[0].imageAlt}
         whatsappLabel={dict.common.whatsappCta}
         primaryHref="#products"
@@ -77,7 +80,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] bg-mist">
             <PhotoCode code="L-01" />
             <Image
-              src={instagramMedia.tote.custom}
+              src={toteImage}
               alt="Modern kullanım için bez çanta"
               fill
               className="object-cover"
@@ -99,7 +102,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="relative min-h-[260px] overflow-hidden rounded-[2rem] bg-mist">
               <PhotoCode code="L-02" />
               <Image
-                src={instagramMedia.tote.school}
+                src={toteImage}
                 alt="Lifestyle bez çanta fotoğrafı"
                 fill
                 className="object-cover"
@@ -136,21 +139,21 @@ export default async function HomePage({ params }: HomePageProps) {
             label: dict.nav.women,
             href: `/${activeLocale}/women`,
             clipId: "cc-strips",
-            image: instagramMedia.socks.pilates,
+            image: heroImage,
           },
           {
             num: "02",
             label: dict.nav.men,
             href: `/${activeLocale}/men`,
             clipId: "cc-blocks",
-            image: instagramMedia.socks.wholesale,
+            image: getFirstCategoryImage("erkek", "/images/placeholder-socks.svg"),
           },
           {
             num: "03",
             label: dict.nav.kids,
             href: `/${activeLocale}/kids`,
             clipId: "cc-grid",
-            image: instagramMedia.socks.bamboo,
+            image: getFirstCategoryImage("cocuk", "/images/placeholder-socks.svg"),
           },
         ]}
       />
