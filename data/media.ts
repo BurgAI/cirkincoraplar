@@ -2,10 +2,10 @@ const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const instagramMedia = {
   socks: {
-    hero: `${b}/images/placeholder-socks.svg`,
-    bamboo: `${b}/images/placeholder-socks.svg`,
-    pilates: `${b}/images/placeholder-socks.svg`,
-    wholesale: `${b}/images/placeholder-wholesale.svg`,
+    hero: `${b}/images/kadin/bamboo/IMG-20260429-WA0207.jpg`,
+    bamboo: `${b}/images/kadin/bamboo/IMG-20260429-WA0210.jpg`,
+    pilates: `${b}/images/kadin/bamboo/IMG-20260429-WA0214.jpg`,
+    wholesale: `${b}/images/kadin/bamboo/IMG-20260429-WA0221.jpg`,
   },
   tote: {
     custom: `${b}/images/placeholder-tote.svg`,
