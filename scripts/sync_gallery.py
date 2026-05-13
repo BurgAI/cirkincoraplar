@@ -53,7 +53,7 @@ for folder_id, out_dir in CATEGORY_MAP:
     url = f"https://drive.google.com/drive/folders/{folder_id}"
     print(f"\n--- {out_dir} syncleniyor ---")
     result = subprocess.run(
-        [sys.executable, "-m", "gdown", "--folder", "--remaining-ok", url, "-O", out_dir],
+        [sys.executable, "-m", "gdown", "--folder", url, "-O", out_dir],
         capture_output=True,
         text=True,
     )

@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install gdown
+        run: pip install "gdown>=6.0"
 
       - name: Sync photos from Google Drive
         run: python scripts/sync_gallery.py
