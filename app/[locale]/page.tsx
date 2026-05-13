@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CategoryCard } from "@/components/CategoryCard";
+import { CategoryShowcase } from "@/components/CategoryShowcase";
 import { CTASection } from "@/components/CTASection";
 import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
@@ -127,6 +128,32 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      <CategoryShowcase
+        items={[
+          {
+            num: "01",
+            label: dict.nav.women,
+            href: `/${activeLocale}/women`,
+            clipId: "cc-strips",
+            image: instagramMedia.socks.pilates,
+          },
+          {
+            num: "02",
+            label: dict.nav.men,
+            href: `/${activeLocale}/men`,
+            clipId: "cc-blocks",
+            image: instagramMedia.socks.wholesale,
+          },
+          {
+            num: "03",
+            label: dict.nav.kids,
+            href: `/${activeLocale}/kids`,
+            clipId: "cc-grid",
+            image: instagramMedia.socks.bamboo,
+          },
+        ]}
+      />
 
       <Gallery dict={dict} />
 
