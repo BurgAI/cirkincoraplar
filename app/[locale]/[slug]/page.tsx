@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
 import { FAQSection } from "@/components/FAQSection";
+import { LocationMap } from "@/components/LocationMap";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -283,7 +284,9 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
             <div className="rounded-3xl bg-white p-6 shadow-soft">
               <h2 className="text-lg font-semibold text-ink">{content.location}</h2>
               <p className="mt-3 text-sm text-ink/70">{content.locationText}</p>
-              <p className="mt-5 text-sm leading-6 text-ink/60">{content.locationNote}</p>
+              <div className="mt-5">
+                <LocationMap />
+              </div>
             </div>
           </div>
         </div>
