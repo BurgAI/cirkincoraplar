@@ -8,6 +8,8 @@ const IGNORED_IMAGES = new Set([
   "images/erkek/diyabetik-corap/BIF-001.jpg",
   "images/erkek/kislik-corap/DZU-002.jpg",
   "images/erkek/patik-corap/BPC-001.png",
+  "images/bez-canta/baskili-bez-canta/IMG-20260429-WA0218.jpg",
+  "images/bez-canta/ozel-tasarim-bez-canta/DZU-007.jpg",
 ]);
 
 const GALLERY_CATEGORIES = ["kadin", "erkek", "cocuk", "bez-canta"];
