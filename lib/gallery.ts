@@ -36,7 +36,11 @@ const SLUG_ALIASES: Record<string, string> = {
   "patik-c-orap": "patik-corap",
   "sneaker-c-orap": "sneaker-corap",
   "kiz-c-ocuk": "kiz-cocuk",
+  "k-z-cocuk": "kiz-cocuk",
+  "k-sl-k-corap": "kislik-corap",
+  "bask-l-bez-canta": "baskili-bez-canta",
   "baskili-bez-c-anta": "baskili-bez-canta",
+  "ozel-tasar-m-bez-canta": "ozel-tasarim-bez-canta",
   "o-zel-tasarim-bez-c-anta": "ozel-tasarim-bez-canta",
 };
 
