@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PhotoCode } from "@/components/PhotoCode";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { withBasePath } from "@/lib/utils";
 
 type PageHeaderProps = {
   eyebrow: string;
@@ -47,7 +48,7 @@ export function PageHeader({
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-soft">
           <PhotoCode code={photoCode} />
           <Image
-            src={image}
+            src={withBasePath(image)}
             alt={`${title} ${whatsappLabel}`}
             fill
             className="object-cover"

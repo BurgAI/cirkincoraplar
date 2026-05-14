@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PhotoCode } from "@/components/PhotoCode";
+import { withBasePath } from "@/lib/utils";
 type ProductItem = {
   name: string;
   category: "socks" | "tote-bags";
@@ -29,7 +30,7 @@ export function ProductGrid({ products, category, photoNote }: ProductGridProps)
           <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-mist">
             <PhotoCode code={`P-${String(index + 1).padStart(2, "0")}`} />
             <Image
-              src={product.image}
+              src={withBasePath(product.image)}
               alt={`${product.name} ${photoNote}`}
               fill
               className="object-cover transition duration-500 group-hover:scale-105"

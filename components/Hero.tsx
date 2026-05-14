@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PhotoCode } from "@/components/PhotoCode";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { withBasePath } from "@/lib/utils";
 
 type HeroProps = {
   eyebrow?: string;
@@ -62,7 +63,7 @@ export function Hero({
         <div className="relative min-h-[58svh] overflow-hidden rounded-[2rem] bg-mist md:min-h-0">
           <PhotoCode code="H-01" />
           <Image
-            src={image}
+            src={withBasePath(image)}
             alt={imageAlt}
             fill
             priority

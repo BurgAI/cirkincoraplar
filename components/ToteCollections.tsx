@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PhotoCode } from "@/components/PhotoCode";
+import { withBasePath } from "@/lib/utils";
 
 type ToteCollectionsProps = {
   content: {
@@ -54,7 +55,7 @@ export function ToteCollections({ content }: ToteCollectionsProps) {
               >
                 <PhotoCode code={`T-${String(index + 1).padStart(2, "0")}`} />
                 <Image
-                  src={collection.image}
+                  src={withBasePath(collection.image)}
                   alt={collection.imageAlt}
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105"

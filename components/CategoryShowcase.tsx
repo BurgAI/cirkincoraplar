@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, withBasePath } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -29,7 +29,7 @@ export function CategoryShowcase({ items }: CategoryShowcaseProps) {
     const selector = `#${item.clipId} .path`;
 
     if (masterTl.current) masterTl.current.kill();
-    if (imageRef.current) imageRef.current.setAttribute("href", item.image);
+    if (imageRef.current) imageRef.current.setAttribute("href", withBasePath(item.image));
     if (mainGroupRef.current)
       mainGroupRef.current.setAttribute("clip-path", `url(#${item.clipId})`);
 
@@ -160,7 +160,7 @@ export function CategoryShowcase({ items }: CategoryShowcaseProps) {
           <g ref={mainGroupRef} clipPath={`url(#${items[0].clipId})`}>
             <image
               ref={imageRef}
-              href={items[0].image}
+              href={withBasePath(items[0].image)}
               width="500"
               height="500"
               preserveAspectRatio="xMidYMid slice"

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PhotoCode } from "@/components/PhotoCode";
 import type { Locale } from "@/data/i18n";
+import { withBasePath } from "@/lib/utils";
 
 type CategoryCardProps = {
   category: {
@@ -34,7 +35,7 @@ export function CategoryCard({ category, locale }: CategoryCardProps) {
       <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-mist">
         <PhotoCode code={codeMap[category.href] ?? "C-00"} />
         <Image
-          src={category.image}
+          src={withBasePath(category.image)}
           alt={category.imageAlt}
           fill
           className="object-cover transition duration-500 group-hover:scale-105"
