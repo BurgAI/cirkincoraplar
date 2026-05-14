@@ -67,6 +67,30 @@ function getImagesInDir(dirPath: string, urlBase: string): string[] {
   }
 }
 
+export function getSubcategoryImages(category: string, slug: string): string[] {
+  const categoryDir = path.join(IMAGES_DIR, category, slug);
+  return getImagesInDir(categoryDir, `images/${category}/${slug}`);
+}
+
+export function getFirstSubcategoryImage(category: string, slug: string, fallback: string): string {
+  const images = getSubcategoryImages(category, slug);
+  return images[0] ?? fallback;
+}
+
+export function getPreferredCategoryImage(
+  category: string,
+  preferredSlugs: string[],
+  fallback: string,
+): string {
+  for (const slug of preferredSlugs) {
+    const image = getFirstSubcategoryImage(category, slug, "");
+    if (image) {
+      return image;
+    }
+  }
+  return getFirstCategoryImage(category, fallback);
+}
+
 export function getFirstCategoryImage(category: string, fallback: string): string {
   const categoryDir = path.join(IMAGES_DIR, category);
   try {

@@ -16,7 +16,7 @@ import {
   type Locale,
   type PageSlug,
 } from "@/data/i18n";
-import { getCategorySubfolders } from "@/lib/gallery";
+import { getCategorySubfolders, getPreferredCategoryImage } from "@/lib/gallery";
 import { siteConfig } from "@/data/siteConfig";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
@@ -45,8 +45,14 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
       pageSlug === "women"
         ? dict.pages.women
         : pageSlug === "men"
-          ? dict.pages.men
+        ? dict.pages.men
           : dict.pages.kids;
+    const headerImage =
+      pageSlug === "women"
+        ? getPreferredCategoryImage("kadin", ["k-01", "k-04", "k-03"], content.image)
+        : pageSlug === "men"
+          ? getPreferredCategoryImage("erkek", ["e-01", "e-02", "e-06"], content.image)
+          : getPreferredCategoryImage("cocuk", ["c-01", "c-02", "c-03"], content.image);
 
     const subfolders = getCategorySubfolders(categoryDir);
     const imageMap: Record<string, string[]> = {};
@@ -56,7 +62,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
     return (
       <>
-        <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
+        <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <SubcategoryGrid
@@ -83,10 +89,21 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "socks") {
     const content = dict.pages.socks;
+    const headerImage = getPreferredCategoryImage("kadin", ["k-01", "k-04", "k-03"], content.image);
+    const socksProducts = dict.products.map((product) => {
+      if (product.category !== "socks") return product;
+      if (product.name === "Desenli Çorap") {
+        return { ...product, image: getPreferredCategoryImage("kadin", ["k-08", "k-04", "k-01"], product.image) };
+      }
+      if (product.name === "Logo Çorap") {
+        return { ...product, image: getPreferredCategoryImage("erkek", ["e-02", "e-01", "e-06"], product.image) };
+      }
+      return product;
+    });
 
     return (
       <>
-        <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
+        <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <SectionTitle
@@ -96,7 +113,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
             />
             <div className="mt-8">
               <ProductGrid
-                products={dict.products}
+                products={socksProducts}
                 category="socks"
                 photoNote={dict.common.photoNote}
               />
@@ -115,19 +132,33 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "tote-bags") {
     const content = dict.pages.toteBags;
+    const toteHero = getPreferredCategoryImage("bez-canta", ["b-01", "b-02"], content.image);
+    const toteCollections = content.collections.map((collection, index) => ({
+      ...collection,
+      image: getPreferredCategoryImage(
+        "bez-canta",
+        index % 2 === 0 ? ["b-01", "b-02"] : ["b-02", "b-01"],
+        collection.image,
+      ),
+    }));
+    const toteContent = {
+      ...content,
+      image: toteHero,
+      collections: toteCollections,
+    };
 
     return (
       <>
-        <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
-        <ToteCollections content={content} />
+        <PageHeader {...toteContent} whatsappLabel={dict.common.whatsappCta} />
+        <ToteCollections content={toteContent} />
         <FAQSection
-          eyebrow={content.faqEyebrow}
-          title={content.faqTitle}
-          items={content.faq}
+          eyebrow={toteContent.faqEyebrow}
+          title={toteContent.faqTitle}
+          items={toteContent.faq}
         />
         <CTASection
           label={dict.cta.label}
-          title={content.ctaTitle}
+          title={toteContent.ctaTitle}
           description={dict.cta.description}
           buttonLabel={dict.common.whatsappCta}
         />
@@ -137,10 +168,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "custom-production") {
     const content = dict.pages.customProduction;
+    const headerImage = getPreferredCategoryImage("bez-canta", ["b-02", "b-01"], content.image);
 
     return (
       <>
-        <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
+        <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <SectionTitle
@@ -186,10 +218,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "wholesale") {
     const content = dict.pages.wholesale;
+    const headerImage = getPreferredCategoryImage("erkek", ["e-01", "e-02", "e-04"], content.image);
 
     return (
       <>
-        <PageHeader {...content} whatsappLabel={dict.common.whatsappCta} />
+        <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="bg-mist py-14 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[.9fr_1.1fr] md:items-start md:px-6">
             <SectionTitle

@@ -1,9 +1,26 @@
 import Image from "next/image";
 import { PhotoCode } from "@/components/PhotoCode";
-import type { Dictionary } from "@/data/i18n";
 
 type ToteCollectionsProps = {
-  content: Dictionary["pages"]["toteBags"];
+  content: {
+    collectionEyebrow: string;
+    collectionTitle: string;
+    collectionDescription: string;
+    collections: readonly {
+      title: string;
+      description: string;
+      image: string;
+      imageAlt: string;
+      tags: readonly string[];
+      rule: string;
+      note: string;
+    }[];
+    purchaseRules: readonly {
+      label: string;
+      title: string;
+      description: string;
+    }[];
+  };
 };
 
 export function ToteCollections({ content }: ToteCollectionsProps) {

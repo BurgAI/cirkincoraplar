@@ -10,7 +10,7 @@ import { PhotoCode } from "@/components/PhotoCode";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
-import { getFirstCategoryImage } from "@/lib/gallery";
+import { getFirstCategoryImage, getPreferredCategoryImage } from "@/lib/gallery";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -26,8 +26,24 @@ export default async function HomePage({ params }: HomePageProps) {
   const activeLocale = locale as Locale;
   const dict = dictionary[activeLocale];
 
-  const heroImage = getFirstCategoryImage("kadin", "/images/placeholder-socks.svg");
-  const toteImage = getFirstCategoryImage("bez-canta", "/images/placeholder-tote.svg");
+  const heroImage = getPreferredCategoryImage("kadin", ["k-01", "k-04", "k-03"], "/images/placeholder-socks.svg");
+  const menImage = getPreferredCategoryImage("erkek", ["e-01", "e-02", "e-06"], "/images/placeholder-socks.svg");
+  const kidsImage = getPreferredCategoryImage("cocuk", ["c-01", "c-02", "c-03"], "/images/placeholder-socks.svg");
+  const toteImage = getPreferredCategoryImage("bez-canta", ["b-01", "b-02"], "/images/placeholder-tote.svg");
+  const categoryCards = dict.categories.map((category) => {
+    if (category.href === "socks#women") return { ...category, image: heroImage };
+    if (category.href === "socks#men") return { ...category, image: menImage };
+    if (category.href === "socks#kids") return { ...category, image: kidsImage };
+    if (category.href === "tote-bags") return { ...category, image: toteImage };
+    return category;
+  });
+  const featuredProducts = dict.products.map((product) => {
+    if (product.name === "Desenli Çorap") return { ...product, image: heroImage };
+    if (product.name === "Logo Çorap") return { ...product, image: menImage };
+    if (product.name === "Promosyon Bez Çanta") return { ...product, image: toteImage };
+    if (product.name === "Markalı Bez Çanta") return { ...product, image: toteImage };
+    return product;
+  });
 
   return (
     <>
@@ -50,7 +66,7 @@ export default async function HomePage({ params }: HomePageProps) {
             description={dict.home.shopDescription}
           />
           <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {dict.categories.map((category) => (
+            {categoryCards.map((category) => (
               <CategoryCard key={category.href} category={category} locale={activeLocale} />
             ))}
           </div>
@@ -70,7 +86,7 @@ export default async function HomePage({ params }: HomePageProps) {
             </p>
           </div>
           <div className="mt-9">
-            <ProductGrid products={dict.products} photoNote={dict.common.photoNote} />
+            <ProductGrid products={featuredProducts} photoNote={dict.common.photoNote} />
           </div>
         </div>
       </section>
@@ -146,14 +162,14 @@ export default async function HomePage({ params }: HomePageProps) {
             label: dict.nav.men,
             href: `/${activeLocale}/men`,
             clipId: "cc-blocks",
-            image: getFirstCategoryImage("erkek", "/images/placeholder-socks.svg"),
+            image: menImage,
           },
           {
             num: "03",
             label: dict.nav.kids,
             href: `/${activeLocale}/kids`,
             clipId: "cc-grid",
-            image: getFirstCategoryImage("cocuk", "/images/placeholder-socks.svg"),
+            image: kidsImage,
           },
         ]}
       />

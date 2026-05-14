@@ -1,9 +1,15 @@
 import Image from "next/image";
 import { PhotoCode } from "@/components/PhotoCode";
-import type { Dictionary } from "@/data/i18n";
+type ProductItem = {
+  name: string;
+  category: "socks" | "tote-bags";
+  description: string;
+  image: string;
+  specs: readonly string[];
+};
 
 type ProductGridProps = {
-  products: Dictionary["products"];
+  products: readonly ProductItem[];
   category?: "socks" | "tote-bags";
   photoNote: string;
 };
