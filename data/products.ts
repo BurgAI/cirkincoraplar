@@ -44,7 +44,7 @@ export const capabilities = [
   "Stoklu ürün tedariği",
   "Logo ve desene göre özel çalışma",
   "Toptan ve düzenli sipariş planlama",
-  "İhracat markası Milotreading için büyümeye hazır yapı",
+  "İhracat markası Milo Trading için büyümeye hazır yapı",
 ];
 
 export const trustPoints = [

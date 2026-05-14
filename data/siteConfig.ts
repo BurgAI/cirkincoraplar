@@ -1,9 +1,11 @@
 const b = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://milo-trading.com").replace(/\/$/, "");
 
 export const siteConfig = {
   name: "Çirkin Çoraplar",
+  siteUrl,
   logo: `${b}/images/logo-instagram.jpg`,
-  exportBrand: "Milotreading",
+  exportBrand: "Milo Trading",
   title: "Çirkin Çoraplar | Çorap ve Bez Çanta Üretimi",
   description:
     "Çorap, bez çanta, özel üretim ve toptan siparişler için üretici firma.",
@@ -14,5 +16,5 @@ export const siteConfig = {
   email: "info@cirkincoraplar.com",
   location: "Türkiye",
   address: "Terazidere Mahallesi, Cengiz Topel Sokak No:22, Bayrampaşa, İstanbul, Türkiye 34440",
-  futureKeywords: ["Milotreading", "socks manufacturer", "custom tote bags"],
+  futureKeywords: ["Milo Trading", "socks manufacturer", "custom tote bags"],
 } as const;

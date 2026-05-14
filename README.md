@@ -1,6 +1,6 @@
 # Çirkin Çoraplar Website MVP
 
-Mobile-first Next.js landing website for Çirkin Çoraplar, prepared for a future bilingual/export structure under Milotreading.
+Mobile-first Next.js landing website for Çirkin Çoraplar, prepared for a future bilingual/export structure under Milo Trading.
 
 ## Tech Stack
 

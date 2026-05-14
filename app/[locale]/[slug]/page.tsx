@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
 import { FAQSection } from "@/components/FAQSection";
@@ -5,6 +6,7 @@ import { LocationMap } from "@/components/LocationMap";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
+import { StructuredData } from "@/components/StructuredData";
 import { SubcategoryGrid } from "@/components/SubcategoryGrid";
 import { ToteCollections } from "@/components/ToteCollections";
 import { getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
@@ -18,6 +20,7 @@ import {
   type PageSlug,
 } from "@/data/i18n";
 import { getCategorySubfolders, getPreferredCategoryImage } from "@/lib/gallery";
+import { buildBreadcrumbSchema, buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/siteConfig";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
@@ -27,6 +30,109 @@ type LocalizedPageProps = {
 
 export function generateStaticParams() {
   return locales.flatMap((locale) => pageSlugs.map((slug) => ({ locale, slug })));
+}
+
+export async function generateMetadata({ params }: LocalizedPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+
+  if (!isLocale(locale) || !isPageSlug(slug)) {
+    return {};
+  }
+
+  const dict = dictionary[locale];
+
+  if (slug === "women" || slug === "men" || slug === "kids") {
+    const content = dict.pages[slug];
+    const image =
+      slug === "women"
+        ? getPreferredCategoryImage("kadin", ["k-01", "k-04", "k-03"], content.image)
+        : slug === "men"
+          ? getPreferredCategoryImage("erkek", ["e-01", "e-02", "e-06"], content.image)
+          : getPreferredCategoryImage("cocuk", ["c-01", "c-02", "c-03"], content.image);
+
+    return buildPageMetadata({
+      locale,
+      path: slug,
+      title: `${content.title} | ${siteConfig.name}`,
+      description: content.description,
+      keywords: [...dict.meta.keywords, ...content.bullets, content.title],
+      image,
+    });
+  }
+
+  if (slug === "socks") {
+    const content = dict.pages.socks;
+
+    return buildPageMetadata({
+      locale,
+      path: slug,
+      title: `${content.title} | ${siteConfig.name}`,
+      description: content.description,
+      keywords: [...dict.meta.keywords, ...content.bullets, content.title],
+      image: getPreferredCategoryImage("kadin", ["bamboo", "en-yeniler", "diz-ustu"], content.image),
+    });
+  }
+
+  if (slug === "tote-bags") {
+    const content = dict.pages.toteBags;
+
+    return buildPageMetadata({
+      locale,
+      path: slug,
+      title: `${content.title} | ${siteConfig.name}`,
+      description: content.description,
+      keywords: [...dict.meta.keywords, ...content.bullets, content.title],
+      image: getPreferredCategoryImage("bez-canta", ["baskili-bez-canta", "ozel-tasarim-bez-canta"], content.image),
+    });
+  }
+
+  if (slug === "custom-production") {
+    const content = dict.pages.customProduction;
+
+    return buildPageMetadata({
+      locale,
+      path: slug,
+      title: `${content.title} | ${siteConfig.name}`,
+      description: content.description,
+      keywords: [...dict.meta.keywords, ...content.bullets, content.title],
+      image: getPreferredCategoryImage("bez-canta", ["ozel-tasarim-bez-canta", "baskili-bez-canta"], content.image),
+    });
+  }
+
+  if (slug === "wholesale") {
+    const content = dict.pages.wholesale;
+
+    return buildPageMetadata({
+      locale,
+      path: slug,
+      title: `${content.title} | ${siteConfig.name}`,
+      description: content.description,
+      keywords: [...dict.meta.keywords, ...content.bullets, content.title],
+      image: getPreferredCategoryImage("erkek", ["bambu-corap", "desenli-corap", "kislik-corap"], content.image),
+    });
+  }
+
+  if (slug === "about") {
+    const content = dict.pages.about;
+
+    return buildPageMetadata({
+      locale,
+      path: slug,
+      title: `${content.title} | ${siteConfig.name}`,
+      description: content.description,
+      keywords: [...dict.meta.keywords, siteConfig.exportBrand, content.eyebrow],
+    });
+  }
+
+  const content = dict.pages.contact;
+
+  return buildPageMetadata({
+    locale,
+    path: slug,
+    title: `${content.title} | ${siteConfig.name}`,
+    description: content.description,
+    keywords: [...dict.meta.keywords, content.eyebrow, content.location],
+  });
 }
 
 export default async function LocalizedPage({ params }: LocalizedPageProps) {
@@ -65,9 +171,14 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
     for (const sf of subfolders) {
       imageMap[sf.slug] = sf.images;
     }
+    const breadcrumbSchema = buildBreadcrumbSchema([
+      { name: dict.nav.home, path: `/${activeLocale}` },
+      { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+    ]);
 
     return (
       <>
+        <StructuredData data={breadcrumbSchema} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -96,6 +207,10 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
   if (pageSlug === "socks") {
     const content = dict.pages.socks;
     const headerImage = getPreferredCategoryImage("kadin", ["bamboo", "en-yeniler", "diz-ustu"], content.image);
+    const breadcrumbSchema = buildBreadcrumbSchema([
+      { name: dict.nav.home, path: `/${activeLocale}` },
+      { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+    ]);
     const socksProducts = dict.products.map((product) => {
       if (product.category !== "socks") return product;
       if (product.name === "Desenli Çorap") {
@@ -115,6 +230,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
     return (
       <>
+        <StructuredData data={breadcrumbSchema} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -144,6 +260,10 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "tote-bags") {
     const content = dict.pages.toteBags;
+    const breadcrumbSchema = buildBreadcrumbSchema([
+      { name: dict.nav.home, path: `/${activeLocale}` },
+      { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+    ]);
     const toteHero = getPreferredCategoryImage(
       "bez-canta",
       ["baskili-bez-canta", "ozel-tasarim-bez-canta"],
@@ -167,6 +287,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
     return (
       <>
+        <StructuredData data={breadcrumbSchema} />
         <PageHeader {...toteContent} whatsappLabel={dict.common.whatsappCta} />
         <ToteCollections content={toteContent} />
         <FAQSection
@@ -186,6 +307,10 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "custom-production") {
     const content = dict.pages.customProduction;
+    const breadcrumbSchema = buildBreadcrumbSchema([
+      { name: dict.nav.home, path: `/${activeLocale}` },
+      { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+    ]);
     const headerImage = getPreferredCategoryImage(
       "bez-canta",
       ["ozel-tasarim-bez-canta", "baskili-bez-canta"],
@@ -194,6 +319,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
     return (
       <>
+        <StructuredData data={breadcrumbSchema} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -240,6 +366,10 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "wholesale") {
     const content = dict.pages.wholesale;
+    const breadcrumbSchema = buildBreadcrumbSchema([
+      { name: dict.nav.home, path: `/${activeLocale}` },
+      { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+    ]);
     const headerImage = getPreferredCategoryImage(
       "erkek",
       ["bambu-corap", "desenli-corap", "kislik-corap"],
@@ -248,6 +378,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
     return (
       <>
+        <StructuredData data={breadcrumbSchema} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="bg-mist py-14 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[.9fr_1.1fr] md:items-start md:px-6">
@@ -277,9 +408,14 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "about") {
     const content = dict.pages.about;
+    const breadcrumbSchema = buildBreadcrumbSchema([
+      { name: dict.nav.home, path: `/${activeLocale}` },
+      { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+    ]);
 
     return (
       <>
+        <StructuredData data={breadcrumbSchema} />
         <section className="bg-cotton py-14 md:py-20">
           <div className="mx-auto max-w-4xl px-4 md:px-6">
             <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-thread">
@@ -315,9 +451,14 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
   }
 
   const content = dict.pages.contact;
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: dict.nav.home, path: `/${activeLocale}` },
+    { name: content.title, path: `/${activeLocale}/${pageSlug}` },
+  ]);
 
   return (
     <>
+      <StructuredData data={breadcrumbSchema} />
       <section className="bg-cotton py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <SectionTitle

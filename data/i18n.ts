@@ -46,7 +46,7 @@ export const dictionary = {
         "bez çanta üretimi",
         "özel üretim çorap",
         "toptan çorap",
-        "Milotreading",
+        "Milo Trading",
       ],
     },
     common: {
@@ -169,7 +169,7 @@ export const dictionary = {
       "Stoklu ürün tedariği",
       "Logo ve desene göre özel çalışma",
       "Toptan ve düzenli sipariş planlama",
-      "İhracat markası Milotreading için büyümeye hazır yapı",
+      "İhracat markası Milo Trading için büyümeye hazır yapı",
     ],
     marketCategories: [
       {
@@ -411,7 +411,7 @@ export const dictionary = {
         sectionEyebrow: "Marka yapısı",
         sectionTitle: "Türkiye pazarı ve ihracat için hazır temel",
         sectionDescription:
-          "Çirkin Çoraplar Türkiye'deki mevcut marka iletişimini taşır. Milotreading ise gelecekte Avrupa ve global pazarlara açılmak için ayrılmış marka alanıdır.",
+          "Çirkin Çoraplar Türkiye'deki mevcut marka iletişimini taşır. Milo Trading ise gelecekte Avrupa ve global pazarlara açılmak için ayrılmış marka alanıdır.",
         exportText:
           "İngilizce ve Almanca içerikler artık temel yapıda hazırdır. İhracat hedefleri netleştiğinde ayrı katalog dili ve teklif formları eklenebilir.",
         ctaTitle: "Üretici firma ile doğrudan iletişime geçin",
@@ -464,7 +464,7 @@ export const dictionary = {
       title: "Çirkin Çoraplar | Socks and Tote Bag Manufacturing",
       description:
         "Manufacturer for socks, tote bags, custom production, and wholesale orders.",
-      keywords: ["socks manufacturer", "custom socks", "tote bag manufacturer", "wholesale socks", "Milotreading"],
+      keywords: ["socks manufacturer", "custom socks", "tote bag manufacturer", "wholesale socks", "Milo Trading"],
     },
     common: {
       manufacturer: "Manufacturer",
@@ -586,7 +586,7 @@ export const dictionary = {
       "Stock product supply",
       "Custom work by logo and pattern",
       "Wholesale and recurring order planning",
-      "Ready to grow under the export brand Milotreading",
+      "Ready to grow under the export brand Milo Trading",
     ],
     marketCategories: [
       {
@@ -828,7 +828,7 @@ export const dictionary = {
         sectionEyebrow: "Brand structure",
         sectionTitle: "A foundation for Turkey and export markets",
         sectionDescription:
-          "Çirkin Çoraplar carries the current Turkish brand communication. Milotreading is reserved for future European and global market positioning.",
+          "Çirkin Çoraplar carries the current Turkish brand communication. Milo Trading is reserved for future European and global market positioning.",
         exportText:
           "English and German content are now available in the base structure. Catalog language and quote forms can be added when export goals become clearer.",
         ctaTitle: "Contact the manufacturer directly",
@@ -881,7 +881,7 @@ export const dictionary = {
       title: "Çirkin Çoraplar | Socken- und Baumwolltaschen-Produktion",
       description:
         "Hersteller für Socken, Baumwolltaschen, Sonderproduktion und Großhandelsbestellungen.",
-      keywords: ["Socken Hersteller", "Socken Produktion", "Baumwolltaschen Hersteller", "Großhandel Socken", "Milotreading"],
+      keywords: ["Socken Hersteller", "Socken Produktion", "Baumwolltaschen Hersteller", "Großhandel Socken", "Milo Trading"],
     },
     common: {
       manufacturer: "Hersteller",
@@ -1003,7 +1003,7 @@ export const dictionary = {
       "Lieferung von Lagerprodukten",
       "Sonderanfertigung nach Logo und Muster",
       "Planung von Großhandel und regelmäßigen Bestellungen",
-      "Bereit für Wachstum unter der Exportmarke Milotreading",
+      "Bereit für Wachstum unter der Exportmarke Milo Trading",
     ],
     marketCategories: [
       {
@@ -1245,7 +1245,7 @@ export const dictionary = {
         sectionEyebrow: "Markenstruktur",
         sectionTitle: "Basis für Türkei und Exportmärkte",
         sectionDescription:
-          "Çirkin Çoraplar trägt die aktuelle Markenkommunikation in der Türkei. Milotreading ist für eine spätere Positionierung in Europa und globalen Märkten vorgesehen.",
+          "Çirkin Çoraplar trägt die aktuelle Markenkommunikation in der Türkei. Milo Trading ist für eine spätere Positionierung in Europa und globalen Märkten vorgesehen.",
         exportText:
           "Englische und deutsche Inhalte sind jetzt in der Grundstruktur vorhanden. Katalogsprache und Angebotsformulare können ergänzt werden, wenn die Exportziele konkreter sind.",
         ctaTitle: "Direkt mit dem Hersteller Kontakt aufnehmen",

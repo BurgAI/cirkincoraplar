@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, locales, type Locale } from "@/data/i18n";
+import { buildLocaleAlternates } from "@/lib/seo";
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -22,11 +23,16 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   }
 
   const dict = dictionary[locale];
+  const alternates = buildLocaleAlternates();
 
   return {
     title: dict.meta.title,
     description: dict.meta.description,
     keywords: [...dict.meta.keywords],
+    alternates: {
+      canonical: alternates.languages[locale],
+      languages: alternates.languages,
+    },
     openGraph: {
       title: dict.meta.title,
       description: dict.meta.description,

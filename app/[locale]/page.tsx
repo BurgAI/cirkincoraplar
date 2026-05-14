@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -9,12 +10,34 @@ import { Hero } from "@/components/Hero";
 import { PhotoCode } from "@/components/PhotoCode";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
+import { StructuredData } from "@/components/StructuredData";
 import { dictionary, isLocale, type Locale } from "@/data/i18n";
-import { getFirstCategoryImage, getPreferredCategoryImage } from "@/lib/gallery";
+import { absoluteUrl, buildLocalizedPath, buildPageMetadata } from "@/lib/seo";
+import { getPreferredCategoryImage } from "@/lib/gallery";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    return {};
+  }
+
+  const dict = dictionary[locale];
+  const heroImage = getPreferredCategoryImage("kadin", ["bamboo", "en-yeniler", "diz-ustu"], "/images/placeholder-socks.svg");
+
+  return buildPageMetadata({
+    locale,
+    title: dict.meta.title,
+    description: dict.meta.description,
+    path: "",
+    keywords: [...dict.meta.keywords, dict.nav.socks, dict.nav.toteBags, dict.nav.wholesale],
+    image: heroImage,
+  });
+}
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
@@ -56,9 +79,18 @@ export default async function HomePage({ params }: HomePageProps) {
     if (product.name === "Markalı Bez Çanta") return { ...product, image: toteImage };
     return product;
   });
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: dict.meta.title,
+    description: dict.meta.description,
+    url: absoluteUrl(buildLocalizedPath(activeLocale)),
+    inLanguage: activeLocale,
+  };
 
   return (
     <>
+      <StructuredData data={webPageSchema} />
       <Hero
         eyebrow="Çirkin Çoraplar Studio"
         title={dict.home.heroTitle}
@@ -198,7 +230,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 text-sm text-ink/55 md:px-6">
           <Link href={`/${activeLocale}/about`} className="font-semibold text-eucalyptus hover:text-ink">
-            Milotreading
+            Milo Trading
           </Link>{" "}
           {dict.home.exportNote}
         </div>
