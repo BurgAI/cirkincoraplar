@@ -19,6 +19,7 @@ CATEGORY_MAP = [
 SLUG_MAP: dict[str, str] = {
     # Kadın
     "bamboo": "k-01",
+    "bamboo-parmak-corap": "k-01",
     "diz-alti": "k-02",
     "diz-ustu": "k-03",
     "en-yeniler": "k-04",
