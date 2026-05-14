@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 const projectRoot = dirname(fileURLToPath(import.meta.url));
 const isGithubActions = process.env.GITHUB_ACTIONS === "true";
 const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
-const basePath = isGithubActions && repoName ? `/${repoName}` : "";
+const customDomain = process.env.PAGES_CUSTOM_DOMAIN?.trim() ?? "";
+const basePath = isGithubActions && repoName && !customDomain ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
