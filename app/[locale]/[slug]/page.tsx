@@ -7,6 +7,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SubcategoryGrid } from "@/components/SubcategoryGrid";
 import { ToteCollections } from "@/components/ToteCollections";
+import { getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
 import {
   dictionary,
   isLocale,
@@ -40,7 +41,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
   const dict = dictionary[activeLocale];
 
   if (pageSlug === "women" || pageSlug === "men" || pageSlug === "kids") {
-    const categoryDir = pageSlug === "women" ? "kadin" : pageSlug === "men" ? "erkek" : "cocuk";
+    const categoryDir = getCategoryDir(pageSlug);
     const content =
       pageSlug === "women"
         ? dict.pages.women
@@ -55,6 +56,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
           : getPreferredCategoryImage("cocuk", ["c-01", "c-02", "c-03"], content.image);
 
     const subfolders = getCategorySubfolders(categoryDir);
+    const subcategories = getLocalizedSubcategories(
+      activeLocale,
+      pageSlug,
+      subfolders.map((subfolder) => subfolder.slug),
+    );
     const imageMap: Record<string, string[]> = {};
     for (const sf of subfolders) {
       imageMap[sf.slug] = sf.images;
@@ -66,7 +72,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <SubcategoryGrid
-              subcategories={content.subcategories}
+              subcategories={subcategories}
               imageMap={imageMap}
               basePath={`/${activeLocale}/${pageSlug}`}
               texts={{
@@ -89,14 +95,20 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "socks") {
     const content = dict.pages.socks;
-    const headerImage = getPreferredCategoryImage("kadin", ["k-01", "k-04", "k-03"], content.image);
+    const headerImage = getPreferredCategoryImage("kadin", ["bamboo", "en-yeniler", "diz-ustu"], content.image);
     const socksProducts = dict.products.map((product) => {
       if (product.category !== "socks") return product;
       if (product.name === "Desenli Çorap") {
-        return { ...product, image: getPreferredCategoryImage("kadin", ["k-08", "k-04", "k-01"], product.image) };
+        return {
+          ...product,
+          image: getPreferredCategoryImage("kadin", ["renkli-corap", "en-yeniler", "bamboo"], product.image),
+        };
       }
       if (product.name === "Logo Çorap") {
-        return { ...product, image: getPreferredCategoryImage("erkek", ["e-02", "e-01", "e-06"], product.image) };
+        return {
+          ...product,
+          image: getPreferredCategoryImage("erkek", ["desenli-corap", "bambu-corap", "sneaker-corap"], product.image),
+        };
       }
       return product;
     });
@@ -132,12 +144,18 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "tote-bags") {
     const content = dict.pages.toteBags;
-    const toteHero = getPreferredCategoryImage("bez-canta", ["b-01", "b-02"], content.image);
+    const toteHero = getPreferredCategoryImage(
+      "bez-canta",
+      ["baskili-bez-canta", "ozel-tasarim-bez-canta"],
+      content.image,
+    );
     const toteCollections = content.collections.map((collection, index) => ({
       ...collection,
       image: getPreferredCategoryImage(
         "bez-canta",
-        index % 2 === 0 ? ["b-01", "b-02"] : ["b-02", "b-01"],
+        index % 2 === 0
+          ? ["baskili-bez-canta", "ozel-tasarim-bez-canta"]
+          : ["ozel-tasarim-bez-canta", "baskili-bez-canta"],
         collection.image,
       ),
     }));
@@ -168,7 +186,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "custom-production") {
     const content = dict.pages.customProduction;
-    const headerImage = getPreferredCategoryImage("bez-canta", ["b-02", "b-01"], content.image);
+    const headerImage = getPreferredCategoryImage(
+      "bez-canta",
+      ["ozel-tasarim-bez-canta", "baskili-bez-canta"],
+      content.image,
+    );
 
     return (
       <>
@@ -218,7 +240,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
   if (pageSlug === "wholesale") {
     const content = dict.pages.wholesale;
-    const headerImage = getPreferredCategoryImage("erkek", ["e-01", "e-02", "e-04"], content.image);
+    const headerImage = getPreferredCategoryImage(
+      "erkek",
+      ["bambu-corap", "desenli-corap", "kislik-corap"],
+      content.image,
+    );
 
     return (
       <>

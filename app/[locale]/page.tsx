@@ -26,10 +26,22 @@ export default async function HomePage({ params }: HomePageProps) {
   const activeLocale = locale as Locale;
   const dict = dictionary[activeLocale];
 
-  const heroImage = getPreferredCategoryImage("kadin", ["k-01", "k-04", "k-03"], "/images/placeholder-socks.svg");
-  const menImage = getPreferredCategoryImage("erkek", ["e-01", "e-02", "e-06"], "/images/placeholder-socks.svg");
-  const kidsImage = getPreferredCategoryImage("cocuk", ["c-01", "c-02", "c-03"], "/images/placeholder-socks.svg");
-  const toteImage = getPreferredCategoryImage("bez-canta", ["b-01", "b-02"], "/images/placeholder-tote.svg");
+  const heroImage = getPreferredCategoryImage("kadin", ["bamboo", "en-yeniler", "diz-ustu"], "/images/placeholder-socks.svg");
+  const menImage = getPreferredCategoryImage(
+    "erkek",
+    ["bambu-corap", "desenli-corap", "sneaker-corap"],
+    "/images/placeholder-socks.svg",
+  );
+  const kidsImage = getPreferredCategoryImage(
+    "cocuk",
+    ["erkek-cocuk", "kiz-cocuk", "taraftar"],
+    "/images/placeholder-socks.svg",
+  );
+  const toteImage = getPreferredCategoryImage(
+    "bez-canta",
+    ["baskili-bez-canta", "ozel-tasarim-bez-canta"],
+    "/images/placeholder-tote.svg",
+  );
   const categoryCards = dict.categories.map((category) => {
     if (category.href === "socks#women") return { ...category, image: heroImage };
     if (category.href === "socks#men") return { ...category, image: menImage };

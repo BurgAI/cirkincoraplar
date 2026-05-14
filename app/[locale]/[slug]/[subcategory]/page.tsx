@@ -4,6 +4,7 @@ import { CTASection } from "@/components/CTASection";
 import { PhotoGallery } from "@/components/PhotoGallery";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, locales, type Locale } from "@/data/i18n";
+import { getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
 import { getCategorySubfolders } from "@/lib/gallery";
 
 type SubcategoryPageProps = {
@@ -14,19 +15,19 @@ const CATEGORY_SLUGS = ["women", "men", "kids"] as const;
 type CategorySlug = (typeof CATEGORY_SLUGS)[number];
 
 const CATEGORY_DIR: Record<CategorySlug, string> = {
-  women: "kadin",
-  men: "erkek",
-  kids: "cocuk",
+  women: getCategoryDir("women"),
+  men: getCategoryDir("men"),
+  kids: getCategoryDir("kids"),
 };
-
-function getSubcategories(locale: Locale, slug: CategorySlug) {
-  return dictionary[locale].pages[slug].subcategories;
-}
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
     CATEGORY_SLUGS.flatMap((slug) =>
-      getSubcategories(locale, slug).map((sub) => ({ locale, slug, subcategory: sub.slug }))
+      getCategorySubfolders(CATEGORY_DIR[slug]).map((sub) => ({
+        locale,
+        slug,
+        subcategory: sub.slug,
+      }))
     )
   );
 }
@@ -42,8 +43,13 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
   const categorySlug = slug as CategorySlug;
   const dict = dictionary[activeLocale];
   const page = dict.pages[categorySlug];
+  const localizedSubcategories = getLocalizedSubcategories(
+    activeLocale,
+    categorySlug,
+    getCategorySubfolders(CATEGORY_DIR[categorySlug]).map((sub) => sub.slug),
+  );
 
-  const subDef = page.subcategories.find((s) => s.slug === subcategory);
+  const subDef = localizedSubcategories.find((s) => s.slug === subcategory);
   if (!subDef) notFound();
 
   const categoryDir = CATEGORY_DIR[categorySlug];
