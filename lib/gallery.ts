@@ -4,6 +4,11 @@ import { categoryCatalog } from "@/data/categoryCatalog";
 
 const IMAGES_DIR = path.join(process.cwd(), "public", "images");
 const SUPPORTED = new Set([".jpg", ".jpeg", ".webp", ".png", ".avif"]);
+const IGNORED_IMAGES = new Set([
+  "images/erkek/diyabetik-corap/BIF-001.jpg",
+  "images/erkek/kislik-corap/DZU-002.jpg",
+  "images/erkek/patik-corap/BPC-001.png",
+]);
 
 const GALLERY_CATEGORIES = ["kadin", "erkek", "cocuk", "bez-canta"];
 const SLUG_ALIASES: Record<string, string> = {
@@ -56,7 +61,7 @@ export function getGalleryImages(): string[] {
       for (const sub of subdirs) {
         const files = fs
           .readdirSync(path.join(catDir, sub))
-          .filter((f) => SUPPORTED.has(path.extname(f).toLowerCase()))
+          .filter((f) => isGalleryImage(`images/${cat}/${sub}/${f}`))
           .sort();
         // Pick up to 2 photos per subcategory for the gallery mosaic
         for (const f of files.slice(0, 2)) {
@@ -100,12 +105,20 @@ function getImagesInDir(dirPath: string, urlBase: string): string[] {
   try {
     return fs
       .readdirSync(dirPath)
-      .filter((f) => SUPPORTED.has(path.extname(f).toLowerCase()))
+      .filter((f) => isGalleryImage(`${urlBase}/${f}`))
       .sort()
       .map((f) => `/${urlBase}/${f}`);
   } catch {
     return [];
   }
+}
+
+function isGalleryImage(relativePath: string): boolean {
+  const normalizedPath = relativePath.replace(/^\/+/, "");
+  return (
+    SUPPORTED.has(path.extname(normalizedPath).toLowerCase()) &&
+    !IGNORED_IMAGES.has(normalizedPath)
+  );
 }
 
 export function getSubcategoryImages(category: string, slug: string): string[] {
