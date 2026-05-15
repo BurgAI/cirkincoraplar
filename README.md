@@ -46,6 +46,34 @@ npm run build
 
 Placeholder images live in `public/images`. Replace them with real product, production, tote bag, wholesale, and workshop photos when available.
 
+## Google Drive Gallery Sync
+
+Gallery images are expected to come from a shared Google Drive root folder and then be synced into `public/images`.
+
+- Sync script: `scripts/sync_gallery.py`
+- Default root folder: `1vcmJJ62lldNR1crfeiLj0utbt08x6SKy`
+- Expected top-level category folders inside Drive: `kadin`, `erkek`, `cocuk`, `bez-canta`
+
+The sync script:
+
+- downloads the shared root folder with `gdown`
+- finds category folders by name or alias
+- refreshes `public/images/kadin`, `public/images/erkek`, `public/images/cocuk`, and `public/images/bez-canta`
+- normalizes folder names to slug format
+
+Manual run:
+
+```bash
+python3 scripts/sync_gallery.py
+```
+
+Optional overrides:
+
+```bash
+GOOGLE_DRIVE_ROOT_FOLDER_ID=your_folder_id python3 scripts/sync_gallery.py
+USE_LEGACY_DRIVE_IDS=1 python3 scripts/sync_gallery.py
+```
+
 ## WhatsApp
 
 The WhatsApp number is configured in `data/siteConfig.ts`.
