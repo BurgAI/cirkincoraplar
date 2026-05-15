@@ -6,7 +6,7 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 import { StructuredData } from "@/components/StructuredData";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, locales, type Locale } from "@/data/i18n";
-import { getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
+import { getAllSubcategorySlugs, getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
 import { getCategorySubfolders } from "@/lib/gallery";
 import { buildBreadcrumbSchema, buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/data/siteConfig";
@@ -27,10 +27,10 @@ const CATEGORY_DIR: Record<CategorySlug, string> = {
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
     CATEGORY_SLUGS.flatMap((slug) =>
-      getCategorySubfolders(CATEGORY_DIR[slug]).map((sub) => ({
+      getAllSubcategorySlugs(slug).map((subcategory) => ({
         locale,
         slug,
-        subcategory: sub.slug,
+        subcategory,
       }))
     )
   );
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
   const subDef = getLocalizedSubcategories(
     activeLocale,
     categorySlug,
-    getCategorySubfolders(CATEGORY_DIR[categorySlug]).map((sub) => sub.slug),
+    getAllSubcategorySlugs(categorySlug),
   ).find((item) => item.slug === subcategory);
 
   if (!subDef) {
@@ -90,7 +90,7 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
   const localizedSubcategories = getLocalizedSubcategories(
     activeLocale,
     categorySlug,
-    getCategorySubfolders(CATEGORY_DIR[categorySlug]).map((sub) => sub.slug),
+    getAllSubcategorySlugs(categorySlug),
   );
 
   const subDef = localizedSubcategories.find((s) => s.slug === subcategory);

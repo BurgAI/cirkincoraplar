@@ -71,6 +71,10 @@ export function getCategoryOrder(pageSlug: CatalogPageSlug) {
   return categoryCatalog[pageSlug].order;
 }
 
+export function getAllSubcategorySlugs(pageSlug: CatalogPageSlug) {
+  return [...categoryCatalog[pageSlug].order];
+}
+
 export function getSubcategoryLabel(
   locale: CatalogLocale,
   pageSlug: CatalogPageSlug,

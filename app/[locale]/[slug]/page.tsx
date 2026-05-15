@@ -9,7 +9,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { StructuredData } from "@/components/StructuredData";
 import { SubcategoryGrid } from "@/components/SubcategoryGrid";
 import { ToteCollections } from "@/components/ToteCollections";
-import { getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
+import { getAllSubcategorySlugs, getCategoryDir, getLocalizedSubcategories } from "@/data/categoryCatalog";
 import {
   dictionary,
   isLocale,
@@ -165,7 +165,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
     const subcategories = getLocalizedSubcategories(
       activeLocale,
       pageSlug,
-      subfolders.map((subfolder) => subfolder.slug),
+      getAllSubcategorySlugs(pageSlug),
     );
     const imageMap: Record<string, string[]> = {};
     for (const sf of subfolders) {
