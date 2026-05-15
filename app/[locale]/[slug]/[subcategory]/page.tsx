@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
 import { PhotoGallery } from "@/components/PhotoGallery";
+import { SectionTitle } from "@/components/SectionTitle";
 import { StructuredData } from "@/components/StructuredData";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { dictionary, isLocale, locales, type Locale } from "@/data/i18n";
@@ -146,6 +147,39 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
       <section className="py-10 md:py-16">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <PhotoGallery images={images} label={subDef.label} />
+        </div>
+      </section>
+      <section className="bg-white py-12 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[.9fr_1.1fr] md:px-6">
+          <SectionTitle
+            eyebrow={page.eyebrow}
+            title={subDef.label}
+            description={page.description}
+          />
+          <div className="space-y-5 text-sm leading-7 text-ink/68">
+            <p>
+              {activeLocale === "tr"
+                ? `${subDef.label} alt kategori sayfası, ilgili ürün görsellerini tek başlık altında toplar. Bu yapı hem kullanıcıların aradığı modeli daha hızlı bulmasına hem de arama motorlarının sayfanın konusunu daha net anlamasına yardımcı olur.`
+                : activeLocale === "en"
+                  ? `The ${subDef.label} subcategory page groups the relevant product images under a single topic. This helps users find the right model faster and gives search engines clearer topical context.`
+                  : `Die Unterkategorieseite ${subDef.label} bündelt die passenden Produktbilder unter einem klaren Thema. So finden Nutzer schneller das richtige Modell und Suchmaschinen verstehen den Seitenfokus besser.`}
+            </p>
+            <p>
+              {activeLocale === "tr"
+                ? `Bu alt koleksiyon için adet, üretim tipi veya toptan sipariş planı gerekiyorsa ilgili kategori sayfasına dönebilir ya da doğrudan iletişim sayfasından teklif isteyebilirsiniz.`
+                : activeLocale === "en"
+                  ? `If you need quantity planning, production details, or wholesale information for this subcollection, you can return to the parent category or request a quote from the contact page.`
+                  : `Wenn Sie für diese Unterkollektion Mengenplanung, Produktionsdetails oder Großhandelsinformationen benötigen, können Sie zur Hauptkategorie zurückkehren oder direkt über die Kontaktseite ein Angebot anfragen.`}
+            </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link href={`/${activeLocale}/${slug}`} className="text-sm font-semibold text-thread hover:text-ink">
+                {page.title}
+              </Link>
+              <Link href={`/${activeLocale}/contact`} className="text-sm font-semibold text-thread hover:text-ink">
+                {dict.nav.contact}
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

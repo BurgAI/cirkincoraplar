@@ -1,3 +1,6 @@
+import { StructuredData } from "@/components/StructuredData";
+import { buildFAQSchema } from "@/lib/seo";
+
 type FAQSectionProps = {
   eyebrow: string;
   title: string;
@@ -8,8 +11,11 @@ type FAQSectionProps = {
 };
 
 export function FAQSection({ eyebrow, title, items }: FAQSectionProps) {
+  const faqSchema = buildFAQSchema(items);
+
   return (
     <section className="bg-mist py-16 md:py-24">
+      <StructuredData data={faqSchema} />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 md:grid-cols-[0.82fr_1.18fr] md:px-6">
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-thread">

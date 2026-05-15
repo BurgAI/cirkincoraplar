@@ -113,3 +113,48 @@ export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
+export function buildFAQSchema(
+  items: readonly {
+    question: string;
+    answer: string;
+  }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function buildServiceSchema({
+  name,
+  description,
+  url,
+  areaServed = "TR",
+}: {
+  name: string;
+  description: string;
+  url: string;
+  areaServed?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    url: absoluteUrl(url),
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+    },
+    areaServed,
+  };
+}

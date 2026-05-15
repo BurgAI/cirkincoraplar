@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
@@ -20,7 +21,7 @@ import {
   type PageSlug,
 } from "@/data/i18n";
 import { getCategorySubfolders, getPreferredCategoryImage } from "@/lib/gallery";
-import { buildBreadcrumbSchema, buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, buildPageMetadata, buildServiceSchema } from "@/lib/seo";
 import { siteConfig } from "@/data/siteConfig";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
@@ -175,10 +176,15 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
       { name: dict.nav.home, path: `/${activeLocale}` },
       { name: content.title, path: `/${activeLocale}/${pageSlug}` },
     ]);
+    const serviceSchema = buildServiceSchema({
+      name: `${content.title} - ${siteConfig.name}`,
+      description: content.description,
+      url: `/${activeLocale}/${pageSlug}`,
+    });
 
     return (
       <>
-        <StructuredData data={breadcrumbSchema} />
+        <StructuredData data={[breadcrumbSchema, serviceSchema]} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -192,6 +198,51 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
                 itemCount: (n) => dict.common.itemCount.replace("{n}", String(n)),
               }}
             />
+          </div>
+        </section>
+        <section className="bg-white py-14 md:py-20">
+          <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[1fr_.95fr] md:px-6">
+            <SectionTitle
+              eyebrow={content.eyebrow}
+              title={content.title}
+              description={content.description}
+            />
+            <div className="space-y-5 text-sm leading-7 text-ink/68">
+              <p>
+                {activeLocale === "tr"
+                  ? `${content.title} sayfası, web sitesindeki kategori düzenini gerçek galeri klasörleriyle eşleştirir. Böylece arama motorları hem ana koleksiyonu hem de alt kategori bağlantılarını daha net tarayabilir.`
+                  : activeLocale === "en"
+                    ? `${content.title} is organized to match the real gallery folders on the website. This helps search engines understand both the main collection and the subcategory links more clearly.`
+                    : `${content.title} ist so aufgebaut, dass die echten Galerieordner der Website direkt abgebildet werden. Dadurch können Suchmaschinen die Hauptkollektion und die Unterkategorien klarer erfassen.`}
+              </p>
+              <p>
+                {activeLocale === "tr"
+                  ? `Stok durumu, özel üretim ihtiyacı ve toptan sipariş talepleri için ilgili alt kategori sayfasını inceleyebilir, ardından ${siteConfig.name} ile doğrudan iletişime geçebilirsiniz.`
+                  : activeLocale === "en"
+                    ? `For stock, custom production, and wholesale inquiries, you can review the relevant subcategory page and then contact ${siteConfig.name} directly.`
+                    : `Für Lagerware, Sonderproduktion und Großhandelsanfragen können Sie die passende Unterkategorie prüfen und anschließend direkt mit ${siteConfig.name} Kontakt aufnehmen.`}
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Link
+                  href={`/${activeLocale}/wholesale`}
+                  className="text-sm font-semibold text-thread hover:text-ink"
+                >
+                  {dict.nav.wholesale}
+                </Link>
+                <Link
+                  href={`/${activeLocale}/custom-production`}
+                  className="text-sm font-semibold text-thread hover:text-ink"
+                >
+                  {dict.nav.customProduction}
+                </Link>
+                <Link
+                  href={`/${activeLocale}/contact`}
+                  className="text-sm font-semibold text-thread hover:text-ink"
+                >
+                  {dict.nav.contact}
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
         <CTASection
@@ -211,6 +262,11 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
       { name: dict.nav.home, path: `/${activeLocale}` },
       { name: content.title, path: `/${activeLocale}/${pageSlug}` },
     ]);
+    const serviceSchema = buildServiceSchema({
+      name: `${content.title} - ${siteConfig.name}`,
+      description: content.description,
+      url: `/${activeLocale}/${pageSlug}`,
+    });
     const socksProducts = dict.products.map((product) => {
       if (product.category !== "socks") return product;
       if (product.name === "Desenli Çorap") {
@@ -230,7 +286,7 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
 
     return (
       <>
-        <StructuredData data={breadcrumbSchema} />
+        <StructuredData data={[breadcrumbSchema, serviceSchema]} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -284,10 +340,15 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
       image: toteHero,
       collections: toteCollections,
     };
+    const serviceSchema = buildServiceSchema({
+      name: `${content.title} - ${siteConfig.name}`,
+      description: content.description,
+      url: `/${activeLocale}/${pageSlug}`,
+    });
 
     return (
       <>
-        <StructuredData data={breadcrumbSchema} />
+        <StructuredData data={[breadcrumbSchema, serviceSchema]} />
         <PageHeader {...toteContent} whatsappLabel={dict.common.whatsappCta} />
         <ToteCollections content={toteContent} />
         <FAQSection
@@ -316,10 +377,15 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
       ["ozel-tasarim-bez-canta", "baskili-bez-canta"],
       content.image,
     );
+    const serviceSchema = buildServiceSchema({
+      name: `${content.title} - ${siteConfig.name}`,
+      description: content.description,
+      url: `/${activeLocale}/${pageSlug}`,
+    });
 
     return (
       <>
-        <StructuredData data={breadcrumbSchema} />
+        <StructuredData data={[breadcrumbSchema, serviceSchema]} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -375,10 +441,15 @@ export default async function LocalizedPage({ params }: LocalizedPageProps) {
       ["bambu-corap", "desenli-corap", "kislik-corap"],
       content.image,
     );
+    const serviceSchema = buildServiceSchema({
+      name: `${content.title} - ${siteConfig.name}`,
+      description: content.description,
+      url: `/${activeLocale}/${pageSlug}`,
+    });
 
     return (
       <>
-        <StructuredData data={breadcrumbSchema} />
+        <StructuredData data={[breadcrumbSchema, serviceSchema]} />
         <PageHeader {...content} image={headerImage} whatsappLabel={dict.common.whatsappCta} />
         <section className="bg-mist py-14 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-[.9fr_1.1fr] md:items-start md:px-6">
